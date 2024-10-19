@@ -6,6 +6,7 @@ import { getCookie } from '../../functions/cookies'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import { CgProfile } from 'react-icons/cg'
+import { Link } from 'react-router-dom'
 
 const Registration = () => {
 	const [eye, setEye] = useState(<EyeOutlined />)
@@ -39,7 +40,7 @@ const Registration = () => {
 				<div className='registration wrapper'>
 					<form className='registration__from'>
 						<Flex vertical={true} justify='center' align='center' gap={'2rem'}>
-							<h3>Регистрация</h3>
+							<h2>Регистрация</h2>
 							<CgProfile className='profile__svg' />
 							<div className='inputs__wrapper'>
 								<Flex
@@ -52,8 +53,9 @@ const Registration = () => {
 										type='text'
 										placeholder='Имя'
 										style={{
-											width: '228px',
+											width: '16rem',
 										}}
+										inputSize='large'
 									/>
 									<div className='password__input__wrapper'>
 										<Input
@@ -61,14 +63,16 @@ const Registration = () => {
 											placeholder='Пароль'
 											className='password__input'
 											style={{
-												borderRadius: '19px 0 0 19px',
+												borderRadius: '1rem 0 0 1rem',
 											}}
+											inputSize='large'
 										/>
 										<Button
 											onClick={() => show_hide_password()}
 											className='button_show'
 											style={{
-												borderRadius: '0 19px 19px 0',
+												borderRadius: '0 1rem 1rem 0',
+												height: '4.5dvh',
 											}}
 										>
 											{eye}
@@ -81,9 +85,11 @@ const Registration = () => {
 							label='Зарегистрироваться'
 							className='button__submit'
 							style={{
-								marginTop: "3rem"
+								marginTop: '3rem',
+								fontWeight: 'bold',
 							}}
 						/>
+						<Link to={'/login'} className='login__link'>Войти</Link>
 					</form>
 				</div>
 			</Flex>

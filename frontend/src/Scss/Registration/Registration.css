@@ -7,22 +7,27 @@
 .registration {
   background-color: #333333;
   width: 30dvw;
-  height: 50dvh;
+  height: 80dvh;
   display: flex;
   justify-content: center;
   border-radius: 2rem;
   margin-top: 5rem;
 }
-.registration h3 {
+.registration h2 {
   color: #F9F9F9;
-  font-size: 2rem;
+  font-size: 4rem;
 }
 .registration .profile__svg {
-  font-size: 3rem;
+  font-size: 4rem;
   color: #F9F9F9;
 }
 .registration .inputs__wrapper {
   margin-top: 2rem;
+}
+.registration .password__input__wrapper {
+  display: flex;
+  justify-self: center;
+  align-items: center;
 }
 .registration form {
   margin-top: 3rem;

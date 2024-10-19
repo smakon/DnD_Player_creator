@@ -2,6 +2,8 @@ import './Input.css'
 import { AllHTMLAttributes } from 'react';
 
 export interface InputProps extends AllHTMLAttributes<InputProps> {
+	/** Размер */
+	inputSize?: 'small' | 'medium' | 'large' 
 	/** Тип ввода*/
 	type?:
 		| 'text'
@@ -42,18 +44,18 @@ export interface InputProps extends AllHTMLAttributes<InputProps> {
    id?: string
 }
 
-const Input = ({type = 'text', value, placeholder = 'Text...', style={}, required=false, className, id}: InputProps) => {
+const Input = ({inputSize='medium',type = 'text', value, placeholder = 'Text...', style={}, required=false, className, id}: InputProps) => {
    return (
-      <input
-         type={type}
-         value={value}
-         style={style}
-         placeholder={placeholder}
-         required={required}
-         className={className}
-         id={id}
-      />
-   );
+			<input
+				type={type}
+				value={value}
+				style={style}
+				placeholder={placeholder}
+				required={required}
+				className={[`input-${inputSize}`,className].join(' ')}
+				id={id}
+			/>
+		)
 }
 
 export default Input;

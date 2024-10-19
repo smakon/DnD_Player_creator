@@ -32,6 +32,7 @@ const Header = () => {
 	return (
 		<header>
 			<Flex vertical={false} justify='space-around' align='center'>
+				<Link to='/' style={{color: "#f9f9f9"}}>Главная</Link>
 				<div className='switcher'>
 					<label className='relative inline-flex items-center cursor-pointer'>
 						<input className='sr-only peer' value='' type='checkbox' />
