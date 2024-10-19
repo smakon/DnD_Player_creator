@@ -5,7 +5,6 @@ import '../Scss/Header/Header.css'
 import Input from '../components/Input/Input'
 import { useEffect, useState } from 'react'
 import { getUser } from '../functions/user'
-import Button from '../components/Button/Button'
 import { Link } from 'react-router-dom'
 
 
@@ -54,7 +53,7 @@ const Header = () => {
 					<p>
 						{userData == null ? (
 								<Link to={'registration'}>
-									Go
+									Войти
 								</Link>
 						) : (
 							userData.name

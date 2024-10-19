@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import '../../Scss/reg.css'
+import '../../Scss/Registration/Registration.css'
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import { Flex } from 'antd'
 import { getCookie } from '../../functions/cookies'
-
+import Input from '../../components/Input/Input'
+import Button from '../../components/Button/Button'
+import { CgProfile } from 'react-icons/cg'
 
 const Registration = () => {
 	const [eye, setEye] = useState(<EyeOutlined />)
@@ -33,33 +35,55 @@ const Registration = () => {
 
 	return (
 		<>
-			{/* <Header /> */}
-			<Flex
-				vertical={true}
-				style={{
-					width: '100dvw',
-					height: '100dvh',
-				}}
-				justify='center'
-				align='center'
-			>
-				<div className='wrapper bg-slate-950'>
+			<Flex vertical={true} justify='center' align='center'>
+				<div className='registration wrapper'>
 					<form className='registration__from'>
-						<input type='text' placeholder='Имя' />
-						<div className='password__input__wrapper'>
-							<input
-								type='password'
-								placeholder='Пароль'
-								className='password__input'
-							/>
-							<button
-								type='button'
-								onClick={() => show_hide_password()}
-								className='button_show'
-							>
-								{eye}
-							</button>
-						</div>
+						<Flex vertical={true} justify='center' align='center' gap={'2rem'}>
+							<h3>Регистрация</h3>
+							<CgProfile className='profile__svg' />
+							<div className='inputs__wrapper'>
+								<Flex
+									vertical={true}
+									justify='center'
+									align='center'
+									gap={'2rem'}
+								>
+									<Input
+										type='text'
+										placeholder='Имя'
+										style={{
+											width: '228px',
+										}}
+									/>
+									<div className='password__input__wrapper'>
+										<Input
+											type='password'
+											placeholder='Пароль'
+											className='password__input'
+											style={{
+												borderRadius: '19px 0 0 19px',
+											}}
+										/>
+										<Button
+											onClick={() => show_hide_password()}
+											className='button_show'
+											style={{
+												borderRadius: '0 19px 19px 0',
+											}}
+										>
+											{eye}
+										</Button>
+									</div>
+								</Flex>
+							</div>
+						</Flex>
+						<Button
+							label='Зарегистрироваться'
+							className='button__submit'
+							style={{
+								marginTop: "3rem"
+							}}
+						/>
 					</form>
 				</div>
 			</Flex>
