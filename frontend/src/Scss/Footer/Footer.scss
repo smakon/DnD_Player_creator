@@ -1,0 +1,31 @@
+footer{
+   position: fixed;
+   width: 100%;
+   height: 6dvh;
+   bottom: 0;
+   background-color: #333333;
+
+   padding: .4rem;
+}
+.create__list {
+   border: 2px solid #24b4fb;
+   background-color: #24b4fb;
+   border-radius: 0.9em;
+   cursor: pointer;
+   padding: 0.4rem 1rem;
+   transition: all ease-in-out 0.2s;
+   font-size: 16px;
+   span{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-weight: 600;
+   }
+
+   &:hover{
+      background-color: #0071e2;
+   }
+
+}
+

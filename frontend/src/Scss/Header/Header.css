@@ -1,0 +1,58 @@
+header {
+  background-color: #333333;
+  height: 8dvh;
+  padding: 1rem;
+  padding-top: 1.2rem;
+  width: 100dvw;
+}
+header .search__wrapper {
+  display: flex;
+}
+header .search__wrapper input {
+  border-radius: 0px 19px 19px 0;
+  width: 35dvw;
+  height: 3.5dvh;
+  outline: none;
+}
+header .search__wrapper .block {
+  border-radius: 19px 0px 0px 19px;
+  background-color: #F9F9F9;
+  height: 3.5dvh;
+  width: 1.5rem;
+}
+header .search__wrapper .block span {
+  margin-left: 3px;
+  margin-top: 8px;
+}
+header .filter__wrapper span {
+  font-size: 1.5rem;
+  color: #F9F9F9;
+}
+header .filter__wrapper p {
+  font-size: large;
+  font-weight: 600;
+  color: #F9F9F9;
+}
+header .profile__wrapper {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+header .profile__wrapper svg {
+  font-size: 2rem;
+  color: #F9F9F9;
+}
+header .profile__wrapper p {
+  margin-left: 0.5rem;
+  color: #F9F9F9;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 508px) {
+  header .filter__wrapper p {
+    display: none;
+  }
+  header .profile__wrapper p {
+    display: none;
+  }
+}/*# sourceMappingURL=Header.css.map */
