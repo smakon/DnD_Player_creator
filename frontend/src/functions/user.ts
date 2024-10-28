@@ -1,10 +1,21 @@
-import { User } from "../Class/User";
-import { getCookie } from "./cookies";
+import { User } from '../Class/User'
+import { getCookie } from './cookies'
 
 export function getUser() {
-   const userId = getCookie('id');
-   const user = new User(Number(userId));
+	const user = new User()
+	const userId = getCookie('id')
+	const response = user.getUser(Number(userId))
+	return response
+}
 
-   const response = user.getUser()
-   return response;
+export function createUser(name: string, password: string) {
+	const user = new User()
+	const response = user.createUser(name, password)
+	return response
+}
+
+export function findUser(name: string) {
+	const user = new User()
+	const response = user.findUser(name)
+	return response
 }

@@ -6,10 +6,11 @@ import Input from '../components/Input/Input'
 import { useEffect, useState } from 'react'
 import { getUser } from '../functions/user'
 import { Link } from 'react-router-dom'
+import { setCookie } from '../functions/cookies'
 
 
 const Header = () => {
-	const [userData, setUserData] = useState({"id":'',"name":"","password":""})
+	const [userData, setUserData] = useState({"id":'0',"name":"","password":""})
 
 	useEffect(() => { 
 		const fetchUserData = async () => {
@@ -22,7 +23,15 @@ const Header = () => {
 		};
 		fetchUserData();
 	}, []);
-
+	
+	
+	useEffect(() => {
+		if (userData !== undefined && Number(userData.id) > 0) {
+			setCookie('id', userData.id, 3)
+		} else {
+			console.debug(`err`)
+		}
+	}, [userData]);
 	function focusOn(idName: string) {
 		const obj = document.getElementById(idName)
 		obj?.focus()

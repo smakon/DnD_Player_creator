@@ -3,15 +3,23 @@ import { AxiosResponse } from 'axios'
 
 
 export class User {
-   private id: number;
-   constructor(userId: number) { 
-      this.id = userId;
-   }
-
-   public async getUser(): Promise<AxiosResponse> {
+   
+   public async findUser(name: string): Promise<AxiosResponse>{
       try {
          const response: AxiosResponse = await
-            axios.get(`/getUser/id=${this.id}`);
+         axios.get(`/findUser/name=${name}`)
+         return response;
+      }
+      catch (error) {
+         console.error('Ошибка при поиске пользователя:', error);
+         throw error;
+      }
+   }
+
+   public async getUser(id: number): Promise<AxiosResponse> {
+      try {
+         const response: AxiosResponse = await
+			axios.get(`/getUser/id=${id}`)
          return response;
       } catch (error) {
          console.error('Ошибка при получении данных пользователя:', error);
@@ -19,4 +27,14 @@ export class User {
       }
    }
    
+   public async createUser(name:string, password: string): Promise<AxiosResponse> { 
+      try {
+         const response: AxiosResponse = await
+            axios.post(`/createUser/${name}/${password}`);
+         return response;
+      } catch (error) {
+         console.error('Ошибка при создании пользователя:', error);
+         throw error;
+      }
+   }
 }

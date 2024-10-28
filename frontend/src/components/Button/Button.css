@@ -1,15 +1,27 @@
+*{
+   --BtnColor: #F9F9F9;
+}
+
 .my__button{
-   background-color: #F9F9F9;
+   display: block;
+   background-color: var(--BtnColor);
    border-radius: 0.5rem;
    border: none;
    padding: 0 0.7rem;
    height: 3.5dvh;
    color: #333333;
+   transform: translateY(0px);
+   transition: all 0.1;
+}
+
+.my__button:active{
+   transition: all 0.08s;
+   transform: translateY(3px);
 }
 
 @media screen and (width > 768px) {
 button:hover{
-   background-color: #E5E5E5;
+   filter: brightness(95%);
 }
 }
 

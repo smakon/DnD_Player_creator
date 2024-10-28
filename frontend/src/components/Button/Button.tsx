@@ -1,6 +1,8 @@
 import './Button.css'
 
 export interface ButtonProps {
+	/** Тип кнопки (button, submit)*/
+	type?: 'button' | 'submit'
 	/** Текст кнопки*/
 	label?: string
 	/** Стили*/
@@ -16,6 +18,7 @@ export interface ButtonProps {
 }
 
 const Button = ({
+	type = 'button',
 	label = '',
 	style = {},
 	className ='',
@@ -25,7 +28,7 @@ const Button = ({
 }: ButtonProps) => {
 	return (
 		<button
-			type="button"
+			type={type}
 			className={'my__button ' + className}
 			style={style}
          id={id}

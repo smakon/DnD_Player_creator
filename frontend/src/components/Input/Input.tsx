@@ -2,6 +2,8 @@ import './Input.css'
 import { AllHTMLAttributes } from 'react';
 
 export interface InputProps extends AllHTMLAttributes<InputProps> {
+	/** Идентификатор поля ввода  Необходимо для стилей и работы с рефами, например, для активации фокуса поля ввода*/
+	name?: string;
 	/** Размер */
 	inputSize?: 'small' | 'medium' | 'large' 
 	/** Тип ввода*/
@@ -44,9 +46,10 @@ export interface InputProps extends AllHTMLAttributes<InputProps> {
    id?: string
 }
 
-const Input = ({inputSize='medium',type = 'text', value, placeholder = 'Text...', style={}, required=false, className, id}: InputProps) => {
+const Input = ({name=undefined,inputSize='medium',type = 'text', value, placeholder = 'Text...', style={}, required=false, className, id}: InputProps) => {
    return (
-			<input
+		<input
+				name={name}
 				type={type}
 				value={value}
 				style={style}

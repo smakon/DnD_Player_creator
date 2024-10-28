@@ -1,7 +1,7 @@
 import { Cookie } from "../Class/Cookie";
 
-export function setCookie(name: string, value: string | number, date: number) {
-	const cookie = new Cookie(name, value, date)
+export function setCookie(name: string, value: string | number, days: number) {
+	const cookie = new Cookie(name, value, days)
 	cookie.setCookie()
 }
 
