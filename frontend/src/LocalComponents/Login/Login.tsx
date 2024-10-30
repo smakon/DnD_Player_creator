@@ -23,15 +23,16 @@ const Login = () => {
 		const name = inputName.value
 		const password = inputPassword.value
 
-		findUser(name).then(user => {
-			if (user.data[0].password === password) {
+		findUser(name, password).then(user => {
+			console.log(typeof(user.data));
+			const data = user.data
+			if (data !== false) {
 				createNotify('success', 'Вход успешно выполнен')
-				setCookie("id", user.data[0].id, 1)
+				setCookie('id', data[0].id, 1)
 				window.location.href = '/'
+			} else if (data == false) {
+				createNotify('error', 'Неверный пароль')
 			}
-			else {
-            createNotify('error','Неверный пароль')
-         }
 		})
    }
 

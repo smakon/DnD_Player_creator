@@ -4,10 +4,10 @@ import { AxiosResponse } from 'axios'
 
 export class User {
    
-   public async findUser(name: string): Promise<AxiosResponse>{
+   public async findUser(name: string, password: string): Promise<AxiosResponse>{
       try {
          const response: AxiosResponse = await
-         axios.get(`/findUser/name=${name}`)
+         axios.get(`/findUser/name=${name}/password=${password}`)
          return response;
       }
       catch (error) {

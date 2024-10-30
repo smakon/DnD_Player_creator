@@ -36,13 +36,20 @@ app.get('/getUser/id=:id', async (req, res) => {
    })
 })
 
-app.get('/findUser/name=:name', async (req, res) => {
+app.get('/findUser/name=:name/password=:password', async (req, res) => {
 	let sql = `select * from users where name = "${req.params.name}"`
 	conn.query(sql, (err, result) => {
 		if (err) {
 			console.debug(err)
-      }
-		res.send(result)
+		}
+		const password = bcrypt.compareSync(req.params.password, result[0].password)
+      console.log(password);
+      
+		if (password == true) {
+			res.send(result)
+		} else {
+			res.send(false)
+		}
 	})
 })
 

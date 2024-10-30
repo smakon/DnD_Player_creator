@@ -14,8 +14,8 @@ export function createUser(name: string, password: string) {
 	return response
 }
 
-export function findUser(name: string) {
+export function findUser(name: string, password: string) {
 	const user = new User()
-	const response = user.findUser(name)
+	const response = user.findUser(name, password)
 	return response
 }
