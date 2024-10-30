@@ -62,7 +62,7 @@ const Header = () => {
 					<CgProfile />
 					<p>
 						{userData == null ? (
-								<Link to={'registration'}>
+								<Link to={'login'}>
 									Войти
 								</Link>
 						) : (

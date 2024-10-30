@@ -1,0 +1,67 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+.registration, .login {
+  background-color: #333333;
+  padding: 3rem 5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  margin-top: 5rem;
+}
+.registration h2, .login h2 {
+  color: #F9F9F9;
+  font-size: 4rem;
+}
+.registration .profile__svg, .login .profile__svg {
+  font-size: 4rem;
+  color: #F9F9F9;
+}
+.registration .password__input__wrapper, .login .password__input__wrapper {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+.registration .password__input__wrapper .name__input, .login .password__input__wrapper .name__input {
+  width: 16rem;
+}
+.registration .password__input__wrapper .password__input, .login .password__input__wrapper .password__input {
+  width: 11.5rem;
+}
+.registration form, .login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.registration .__link, .login .__link {
+  margin-top: 2rem;
+  color: #F9F9F9;
+  font-size: 1.5rem;
+}
+.registration .__link:hover, .login .__link:hover {
+  color: #ffaa00;
+}
+
+@media screen and (max-width: 900px) {
+  .registration, .login {
+    padding: 2rem;
+  }
+  .registration h2, .login h2 {
+    font-size: 2rem;
+  }
+  .registration .profile__svg, .login .profile__svg {
+    font-size: 3rem;
+  }
+  .registration .inputs__wrapper .name__input, .login .inputs__wrapper .name__input {
+    width: 14rem;
+  }
+  .registration .inputs__wrapper .password__input, .login .inputs__wrapper .password__input {
+    width: 11.5rem;
+  }
+  .registration .__link, .login .__link {
+    font-size: large;
+  }
+}/*# sourceMappingURL=RegistrationLogin.css.map */

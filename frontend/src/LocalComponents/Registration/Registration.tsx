@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import '../../Scss/Registration/Registration.css'
+import '../../Scss/RegistrationLogin/RegistrationLogin.css'
 import { EyeOutlined} from '@ant-design/icons'
 import { Flex } from 'antd'
 import { getCookie } from '../../functions/cookies'
@@ -85,9 +85,6 @@ const Registration = () => {
 										name='name'
 										type='text'
 										placeholder='Имя'
-										style={{
-											width: '16rem',
-										}}
 										inputSize='large'
 										className='name__input'
 										required={true}
@@ -131,7 +128,7 @@ const Registration = () => {
 								height: '4dvh',
 							}}
 						/>
-						<Link to={'/login'} className='login __link'>
+						<Link to={'/login'} className='__link'>
 							Войти
 						</Link>
 					</form>

@@ -5,11 +5,9 @@
 }
 
 
-.registration{
+.registration, .login{
    background-color: #333333;
-   width: 30dvw;
-   height: 80dvh;
-
+   padding: 3rem 5rem;
    display: flex;
    justify-content: center;
    
@@ -26,16 +24,20 @@
       color: #F9F9F9;
    }
 
-   .inputs__wrapper{
-      margin-top: 2rem;
-   }
+   
    .password__input__wrapper{
       display: flex;
       justify-self: center;
       align-items: center;
+
+      .name__input{
+         width: 16rem;
+      }
+      .password__input{
+         width: 11.5rem;
+      }
    }
    form{
-      margin-top: 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -52,9 +54,28 @@
    }
 }
 
-@media screen and (max-width: 508px){
-   .registration{
-      width: 60dvw;
-      height: 40dvh;
+@media screen and (max-width: 900px){
+   .registration, .login{
+      padding: 2rem;
+
+      h2{
+         font-size: 2rem;
+      }
+      .profile__svg{
+         font-size: 3rem;
+      }
+
+      .inputs__wrapper{
+         .name__input{
+            width: 14rem;
+         }
+         .password__input{
+            width: 11.5rem;
+         }
+      }
+
+      .__link{
+         font-size: large;
+      }
    }
 }

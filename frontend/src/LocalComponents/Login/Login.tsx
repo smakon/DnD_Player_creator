@@ -1,46 +1,50 @@
-import { useEffect, useState } from 'react'
-import '../../Scss/Registration/Registration.css'
+import { useState } from 'react'
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import { Flex } from 'antd'
-import { getCookie, setCookie } from '../../functions/cookies'
+import { setCookie } from '../../functions/cookies'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import { CgProfile } from 'react-icons/cg'
 import { Link } from 'react-router-dom'
-import { createUser, findUser } from '../../functions/user'
+import { findUser } from '../../functions/user'
 import { createNotify } from '../../functions/notify'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { show_hide_password } from '../../functions/functions'
 
 const Login = () => {
-   const [eye, setEye] = useState<React.ReactNode>(<EyeOutlined />)
+	const [eye, setEye] = useState<React.ReactNode>(<EyeOutlined />)
 
-   function getFormData() {
-      const inputName = document.querySelector('.name__input') as HTMLInputElement
-      const inputPassword = document.querySelector('.password__input') as HTMLInputElement
-      
+	function getFormData() {
+		const inputName = document.querySelector('.name__input') as HTMLInputElement
+		const inputPassword = document.querySelector(
+			'.password__input'
+		) as HTMLInputElement
+
 		const name = inputName.value
 		const password = inputPassword.value
-
-		findUser(name, password).then(user => {
-			console.log(typeof(user.data));
-			const data = user.data
-			if (data !== false) {
-				createNotify('success', 'Вход успешно выполнен')
-				setCookie('id', data[0].id, 1)
-				window.location.href = '/'
-			} else if (data == false) {
-				createNotify('error', 'Неверный пароль')
-			}
-		})
-   }
+		if (name.length == 0 || password.length == 0) {
+			createNotify('error', 'Введите все данные')
+		} else {
+			findUser(name, password).then(user => {
+				console.log(typeof user.data)
+				const data = user.data
+				if (data !== false) {
+					createNotify('success', 'Вход успешно выполнен')
+					setCookie('id', data[0].id, 1)
+					window.location.href = '/'
+				} else if (data == false) {
+					createNotify('error', 'Неверный пароль')
+				}
+			})
+		}
+	}
 
 	return (
 		<>
 			<Flex vertical={true} justify='center' align='center'>
-				<div className='registration wrapper'>
-					<form className='registration__from'>
+				<div className='login wrapper'>
+					<form className='login__from'>
 						<Flex vertical={true} justify='center' align='center' gap={'2rem'}>
 							<h2>Вход</h2>
 							<CgProfile className='profile__svg' />
@@ -55,9 +59,6 @@ const Login = () => {
 										name='name'
 										type='text'
 										placeholder='Имя'
-										style={{
-											width: '16rem',
-										}}
 										inputSize='large'
 										className='name__input'
 										required={true}
@@ -101,7 +102,7 @@ const Login = () => {
 								height: '4dvh',
 							}}
 						/>
-						<Link to={'/registration'} className='login __link'>
+						<Link to={'/registration'} className='__link'>
 							Зарегистрироваться
 						</Link>
 					</form>

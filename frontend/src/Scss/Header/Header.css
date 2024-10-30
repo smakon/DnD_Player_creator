@@ -1,8 +1,7 @@
 header {
+  display: grid;
   background-color: #333333;
   height: 8dvh;
-  padding: 1rem;
-  padding-top: 1.2rem;
   width: 100dvw;
 }
 header .search__wrapper {
