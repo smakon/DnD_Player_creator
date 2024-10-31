@@ -9,20 +9,14 @@ import { Link } from 'react-router-dom'
 import { setCookie } from '../functions/cookies'
 
 
-const Header = () => {
-	const [userData, setUserData] = useState({"id":'0',"name":"","password":""})
-
-	useEffect(() => { 
-		const fetchUserData = async () => {
-			try {
-				const res = await getUser();
-				setUserData(res.data[0]);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-		fetchUserData();
-	}, []);
+export interface HeaderProps {
+	userData: {
+		id: number | string
+		name: string
+		password: string
+	}
+}
+const Header = ({userData} : HeaderProps) => {
 	
 	
 	useEffect(() => {
@@ -41,7 +35,9 @@ const Header = () => {
 	return (
 		<header>
 			<Flex vertical={false} justify='space-around' align='center'>
-				<Link to='/' style={{color: "#f9f9f9"}}>Главная</Link>
+				<Link to='/' style={{ color: '#f9f9f9' }}>
+					Главная
+				</Link>
 				<div className='switcher'>
 					<label className='relative inline-flex items-center cursor-pointer'>
 						<input className='sr-only peer' value='' type='checkbox' />
@@ -59,15 +55,11 @@ const Header = () => {
 					<p>Фильтр</p>
 				</div>
 				<div className='profile__wrapper'>
-					<CgProfile />
+					<Link to={'profile'}>
+						<CgProfile />
+					</Link>
 					<p>
-						{userData == null ? (
-								<Link to={'login'}>
-									Войти
-								</Link>
-						) : (
-							userData.name
-						)}
+						{userData == null ? <Link to={'login'}>Войти</Link> : userData.name}
 					</p>
 				</div>
 			</Flex>

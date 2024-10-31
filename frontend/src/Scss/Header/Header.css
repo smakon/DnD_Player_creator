@@ -2,7 +2,7 @@ header {
   display: grid;
   background-color: #333333;
   height: 8dvh;
-  width: 100dvw;
+  width: 100%;
 }
 header .search__wrapper {
   display: flex;
@@ -53,5 +53,14 @@ header .profile__wrapper p {
   }
   header .profile__wrapper p {
     display: none;
+  }
+  header input {
+    height: 3.9dvh !important;
+  }
+  header .search__wrapper .block {
+    height: 3.9dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
 }/*# sourceMappingURL=Header.css.map */

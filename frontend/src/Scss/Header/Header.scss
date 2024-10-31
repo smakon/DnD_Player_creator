@@ -4,12 +4,11 @@ header{
    display:grid;
    background-color: #333333;
    height: 8dvh;
-   width: 100dvw;
+   width: 100%;
 
    .search__wrapper{
       display: flex;
       input{
-         
          border-radius: 0px 19px 19px 0;
          width: 35dvw;
          height: 3.5dvh;
@@ -65,5 +64,18 @@ header{
             display: none;
          }
       }
+      input{
+         height: 3.9dvh !important;
+      }
+
+      .search__wrapper{
+         .block{
+            height: 3.9dvh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            
+         }
+   }
    }
 }
