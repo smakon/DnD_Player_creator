@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './LocalComponents/Header'
 import Login from './LocalComponents/Login/Login'
 import Profile from './LocalComponents/Profile/Profile'
-import { getUser } from './functions/user'
+import { getUser, getUserBook, getUserCharacters, getUserData } from './functions/user'
 import { useState, useEffect } from 'react'
 
 
@@ -12,27 +12,80 @@ import { useState, useEffect } from 'react'
 
 
 function App() {
-	const [userData, setUserData] = useState({ id: '0', name: '', password: '' })
+	const [userAccount, setUserAccount] = useState({
+		id: '',
+		name: '',
+		password: '',
+	})
+	const [userData, setUserData] = useState({
+		user_id: '',
+		theme: '',
+		vibration: '',
+		language: '',
+		dice_count: '',
+	})
+	const [userCharacters, setUserCharacters] = useState([{}])
+	const [userBook, setUserBook] = useState([{}])
+	
+	const fetchUserAccount = async () => {
+		try {
+			const res = await getUser()
+			setUserAccount(res.data[0])
+		} catch (error) {
+			console.error(error)
+		}
+	}
+	const fetchUserData = async () => {
+		try {
+         const res = await getUserData()
+         setUserData(res.data[0])
+      } catch (error) {
+         console.error(error)
+      }
+	}
+	const fetchUserCharacters = async () => {
+		try {
+			const res = await getUserCharacters()
+			setUserCharacters(res.data)
+			
+		} catch (error) {
+			console.error(error)
+		}
+	}
+	const fetchUserBook = async () => {
+		try {
+         const res = await getUserBook()
+         setUserBook(res.data)
+      } catch (error) {
+         console.error(error)
+      }
+	}
 
 	useEffect(() => {
-		const fetchUserData = async () => {
-			try {
-				const res = await getUser()
-				setUserData(res.data[0])	
-			} catch (error) {
-				console.error(error)
-			}
-		}
+		fetchUserAccount()
 		fetchUserData()
+		fetchUserCharacters()
+		fetchUserBook()
 	}, [])
+	console.log(userBook)
+	console.log(typeof(userBook))
 	return (
 		<BrowserRouter>
-			<Header userData={userData}/>
+			<Header userAccount={userAccount} />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
-				<Route path='profile' element={<Profile userData={userData}/>} />
+				<Route
+					path='profile'
+					element=
+					{<Profile
+						userAccount={userAccount}
+						userData={userData}
+						userCharacters={userCharacters}
+						userBook={userBook}
+					/>}
+				/>
 			</Routes>
 		</BrowserRouter>
 	)

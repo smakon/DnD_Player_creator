@@ -1,13 +1,30 @@
 import { User } from '../Class/User'
 import { getCookie } from './cookies'
 
+const userId = getCookie('id')
+
 export function getUser() {
 	const user = new User()
-	const userId = getCookie('id')
 	const response = user.getUser(Number(userId))
 	return response
 }
+export function getUserCharacters() {
+	const user = new User()
+	const response = user.getUserCharacters(Number(userId))
+	return response
+}
 
+export function getUserBook() {
+	const user = new User()
+	const response = user.getUserBook(Number(userId))
+	return response
+}
+
+export function getUserData() { 
+	const user = new User()
+   const response = user.getUserData(Number(userId))
+   return response
+}
 export function createUser(name: string, password: string) {
 	const user = new User()
 	const response = user.createUser(name, password)
@@ -19,3 +36,4 @@ export function findUser(name: string, password: string) {
 	const response = user.findUser(name, password)
 	return response
 }
+

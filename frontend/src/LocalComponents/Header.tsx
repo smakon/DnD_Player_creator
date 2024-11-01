@@ -3,35 +3,31 @@ import { SearchOutlined, FilterOutlined } from '@ant-design/icons'
 import { CgProfile } from 'react-icons/cg'
 import '../Scss/Header/Header.css'
 import Input from '../components/Input/Input'
-import { useEffect, useState } from 'react'
-import { getUser } from '../functions/user'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { setCookie } from '../functions/cookies'
 
 
 export interface HeaderProps {
-	userData: {
+	userAccount: {
 		id: number | string
 		name: string
 		password: string
 	}
 }
-const Header = ({userData} : HeaderProps) => {
-	
-	
+const Header = ({ userAccount }: HeaderProps) => {
 	useEffect(() => {
-		if (userData !== undefined && Number(userData.id) > 0) {
-			setCookie('id', userData.id, 3)
+		if (userAccount !== undefined && Number(userAccount.id) > 0) {
+			setCookie('id', userAccount.id, 3)
 		} else {
 			console.debug(`err`)
 		}
-	}, [userData]);
+	}, [userAccount])
 	function focusOn(idName: string) {
 		const obj = document.getElementById(idName)
 		obj?.focus()
 	}
 
-	
 	return (
 		<header>
 			<Flex vertical={false} justify='space-around' align='center'>
@@ -59,7 +55,11 @@ const Header = ({userData} : HeaderProps) => {
 						<CgProfile />
 					</Link>
 					<p>
-						{userData == null ? <Link to={'login'}>Войти</Link> : userData.name}
+						{userAccount == null ? (
+							<Link to={'login'}>Войти</Link>
+						) : (
+							userAccount.name
+						)}
 					</p>
 				</div>
 			</Flex>
