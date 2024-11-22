@@ -29,12 +29,16 @@ const Login = () => {
 			findUser(name, password).then(user => {
 				console.log(typeof user.data)
 				const data = user.data
-				if (data !== false) {
+				
+				if (data == true) {
 					createNotify('success', 'Вход успешно выполнен')
 					setCookie('id', data[0].id, 1)
 					window.location.href = '/'
 				} else if (data == false) {
 					createNotify('error', 'Неверный пароль')
+				}
+				else if (data == "No user found") {
+					createNotify('error', 'Пользователь с таким именем не найден')
 				}
 			})
 		}
@@ -102,6 +106,9 @@ const Login = () => {
 								height: '4dvh',
 							}}
 						/>
+						<Link to={'/forgotPassword'} className='__link'>
+							Забыли пороль?
+						</Link>
 						<Link to={'/registration'} className='__link'>
 							Зарегистрироваться
 						</Link>

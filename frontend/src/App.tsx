@@ -6,8 +6,9 @@ import Login from './LocalComponents/Login/Login'
 import Profile from './LocalComponents/Profile/Profile'
 import { getUser, getUserBook, getUserCharacters, getUserData } from './functions/user'
 import { useState, useEffect } from 'react'
-
-
+import { useTranslation } from 'react-i18next'
+import i18n from './i18n'
+import ResetPassword from './LocalComponents/ResetPass/ResetPassword'
 
 
 
@@ -26,7 +27,8 @@ function App() {
 	})
 	const [userCharacters, setUserCharacters] = useState([{}])
 	const [userBook, setUserBook] = useState([{}])
-	
+	const [language, setLanguage] = useState('ru')
+	const { t } = useTranslation()
 	const fetchUserAccount = async () => {
 		try {
 			const res = await getUser()
@@ -66,6 +68,7 @@ function App() {
 		fetchUserData()
 		fetchUserCharacters()
 		fetchUserBook()
+		i18n.changeLanguage('ru')
 	}, [])
 	console.log(userBook)
 	console.log(typeof(userBook))
@@ -76,15 +79,20 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
+				<Route path='forgotPassword' element={<ResetPassword/>} />
 				<Route
 					path='profile'
-					element=
-					{<Profile
-						userAccount={userAccount}
-						userData={userData}
-						userCharacters={userCharacters}
-						userBook={userBook}
-					/>}
+					element={
+						<Profile
+							setLanguage={setLanguage}
+							t={t}
+							language={language}
+							userAccount={userAccount}
+							userData={userData}
+							userCharacters={userCharacters}
+							userBook={userBook}
+						/>
+					}
 				/>
 			</Routes>
 		</BrowserRouter>
