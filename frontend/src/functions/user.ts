@@ -1,3 +1,4 @@
+import { func } from 'prop-types'
 import { User } from '../Class/User'
 import { getCookie } from './cookies'
 
@@ -20,10 +21,10 @@ export function getUserBook() {
 	return response
 }
 
-export function getUserData() { 
+export function getUserData() {
 	const user = new User()
-   const response = user.getUserData(Number(userId))
-   return response
+	const response = user.getUserData(Number(userId))
+	return response
 }
 export function createUser(name: string, password: string) {
 	const user = new User()
@@ -37,3 +38,20 @@ export function findUser(name: string, password: string) {
 	return response
 }
 
+export function updateUser(
+	dice: number | string,
+	theme: number | string,
+	vibration: number | string,
+	language: string
+)
+{
+	const user = new User()
+   const response = user.updateUserData(
+			Number(userId),
+			dice,
+			theme,
+			vibration,
+			language
+		)
+   return response
+}

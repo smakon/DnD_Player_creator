@@ -27,10 +27,10 @@ const Login = () => {
 			createNotify('error', 'Введите все данные')
 		} else {
 			findUser(name, password).then(user => {
-				console.log(typeof user.data)
 				const data = user.data
+				console.log(data);
 				
-				if (data == true) {
+				if (user.status === 200) {
 					createNotify('success', 'Вход успешно выполнен')
 					setCookie('id', data[0].id, 1)
 					window.location.href = '/'

@@ -1,10 +1,13 @@
 import { Footer } from "../Footer"
 
-function Home() {
+export interface HomeProps {
+	currentDevice: object
+}
+function Home({ currentDevice}: HomeProps) {
 	return (
 		<>
 			<p className='className text-red-500'>Hello</p>
-         <Footer />
+         <Footer currentDevice={currentDevice}/>
       </>
 	)
 }

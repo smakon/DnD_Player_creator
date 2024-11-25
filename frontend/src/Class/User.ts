@@ -77,9 +77,9 @@ export class User {
 
 	public async updateUserData(
 		id: number,
-		dice: number,
-		theme: number,
-		vibration: number,
+		dice: number | string,
+		theme: number | string,
+		vibration: number | string,
 		language: string
 	): Promise<AxiosResponse> {
 		try {

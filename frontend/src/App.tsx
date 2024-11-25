@@ -4,31 +4,41 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './LocalComponents/Header'
 import Login from './LocalComponents/Login/Login'
 import Profile from './LocalComponents/Profile/Profile'
-import { getUser, getUserBook, getUserCharacters, getUserData } from './functions/user'
+import {
+	getUser,
+	getUserBook,
+	getUserCharacters,
+	getUserData,
+} from './functions/user'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n from './i18n'
 import ResetPassword from './LocalComponents/ResetPass/ResetPassword'
 
-
+const device = require('current-device').default
 
 function App() {
+	const [currentDevice, setDevice] = useState(device.desktop())
+
 	const [userAccount, setUserAccount] = useState({
 		id: '',
 		name: '',
 		password: '',
 	})
 	const [userData, setUserData] = useState({
-		user_id: '',
-		theme: '',
-		vibration: '',
+		user_id: 0,
+		theme: 0,
+		vibration: 0,
 		language: '',
-		dice_count: '',
+		dice_count: 0,
 	})
 	const [userCharacters, setUserCharacters] = useState([{}])
 	const [userBook, setUserBook] = useState([{}])
-	const [language, setLanguage] = useState('ru')
+	const [language, setLanguage] = useState('')
+	const [vibration, setVibration] = useState(0)
+	const [theme, setTheme] = useState(0)
 	const { t } = useTranslation()
+
 	const fetchUserAccount = async () => {
 		try {
 			const res = await getUser()
@@ -39,28 +49,27 @@ function App() {
 	}
 	const fetchUserData = async () => {
 		try {
-         const res = await getUserData()
-         setUserData(res.data[0])
-      } catch (error) {
-         console.error(error)
-      }
+			const res = await getUserData()
+			setUserData(res.data[0])
+		} catch (error) {
+			console.error(error)
+		}
 	}
 	const fetchUserCharacters = async () => {
 		try {
 			const res = await getUserCharacters()
 			setUserCharacters(res.data)
-			
 		} catch (error) {
 			console.error(error)
 		}
 	}
 	const fetchUserBook = async () => {
 		try {
-         const res = await getUserBook()
-         setUserBook(res.data)
-      } catch (error) {
-         console.error(error)
-      }
+			const res = await getUserBook()
+			setUserBook(res.data)
+		} catch (error) {
+			console.error(error)
+		}
 	}
 
 	useEffect(() => {
@@ -68,18 +77,29 @@ function App() {
 		fetchUserData()
 		fetchUserCharacters()
 		fetchUserBook()
-		i18n.changeLanguage('ru')
 	}, [])
-	console.log(userBook)
-	console.log(typeof(userBook))
+	useEffect(() => {
+		setLanguage(userData.language)
+		setVibration(userData.vibration)
+		setTheme(userData.theme)
+		i18n.changeLanguage(userData.language)
+	}, [userData])
+
 	return (
 		<BrowserRouter>
-			<Header userAccount={userAccount} />
+			<Header
+				userAccount={userAccount}
+				setTheme={setTheme}
+				theme={theme}
+				userData={userData}
+				language={language}
+				vibration={vibration}
+			/>
 			<Routes>
-				<Route path='/' element={<Home />} />
+				<Route path='/' element={<Home currentDevice={currentDevice} />} />
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
-				<Route path='forgotPassword' element={<ResetPassword/>} />
+				<Route path='forgotPassword' element={<ResetPassword />} />
 				<Route
 					path='profile'
 					element={
@@ -91,6 +111,9 @@ function App() {
 							userData={userData}
 							userCharacters={userCharacters}
 							userBook={userBook}
+							currentDevice={currentDevice}
+							setVibration={setVibration}
+							vibration={vibration}
 						/>
 					}
 				/>
