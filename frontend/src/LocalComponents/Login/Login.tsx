@@ -30,7 +30,7 @@ const Login = () => {
 				const data = user.data
 				console.log(data);
 				
-				if (user.status === 200) {
+				if (data.id !== 0) {
 					createNotify('success', 'Вход успешно выполнен')
 					setCookie('id', data[0].id, 1)
 					window.location.href = '/'
@@ -107,7 +107,7 @@ const Login = () => {
 							}}
 						/>
 						<Link to={'/forgotPassword'} className='__link'>
-							Забыли пороль?
+							Забыли пароль?
 						</Link>
 						<Link to={'/registration'} className='__link'>
 							Зарегистрироваться

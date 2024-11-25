@@ -29,12 +29,12 @@ function App() {
 		user_id: 0,
 		theme: 0,
 		vibration: 0,
-		language: '',
+		language: 'ru',
 		dice_count: 0,
 	})
 	const [userCharacters, setUserCharacters] = useState([{}])
 	const [userBook, setUserBook] = useState([{}])
-	const [language, setLanguage] = useState('')
+	const [language, setLanguage] = useState('ru')
 	const [vibration, setVibration] = useState(0)
 	const [theme, setTheme] = useState(0)
 	const { t } = useTranslation()
@@ -79,10 +79,18 @@ function App() {
 		fetchUserBook()
 	}, [])
 	useEffect(() => {
-		setLanguage(userData.language)
-		setVibration(userData.vibration)
-		setTheme(userData.theme)
-		i18n.changeLanguage(userData.language)
+		try {
+			setLanguage(userData.language)
+         setVibration(userData.vibration)
+         setTheme(userData.theme)
+         i18n.changeLanguage(userData.language)
+		}
+		catch(userData){
+			setLanguage('ru')
+         setVibration(30)
+         setTheme(0)
+         i18n.changeLanguage('ru')
+		}
 	}, [userData])
 
 	return (

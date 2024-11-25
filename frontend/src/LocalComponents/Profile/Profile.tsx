@@ -53,26 +53,26 @@ const Profile = ({
 
 	return (
 		<div className='profile mt-4'>
-			<h1 className=' text-2xl font-bold flex justify-center'>
+			<h1 className=' text-4xl font-bold flex justify-center'>
 				{t('Привет')} {userAccount.name}
 			</h1>
 			<div className='information'>
-				<h2 className='text-2xl font-bold mb-1'>
-					{t('Информация вашего аккаунта')}:
+				<h2 className='text-3xl font-bold mb-1'>
+					{t('Статистика аккаунта')}:
 				</h2>
-				<p className=' text-xl m-1'>
+				<p className=' text-2xl m-1'>
 					{t('Персонажей')}: {userCharacters.length}
 				</p>
-				<p className=' text-xl m-1'>
+				<p className=' text-2xl m-1'>
 					{t('Заклинаний в книге')}: {userBook.length}
 				</p>
-				<p className=' text-xl m-1'>
+				<p className=' text-2xl m-1'>
 					{t('Брошено костей')}: {userData.dice_count}
 				</p>
 				<div className='settings_wrapper mt-5'>
-					<h2 className='text-2xl font-bold mb-1'>{t('Настройки')}:</h2>
+					<h2 className='text-3xl font-bold mb-1'>{t('Настройки')}:</h2>
 					<div className='lang_wrapper flex gap-4'>
-						<p className=' text-xl m-1'>{t('Язык')}:</p>
+						<p className=' text-2xl m-1'>{t('Язык')}:</p>
 						<Select
 							value={language}
 							options={[
@@ -95,7 +95,7 @@ const Profile = ({
 						''
 					) : (
 						<div className='vibration_wrapper flex gap-4 items-center'>
-							<p className=' text-xl m-1'>{t('Вибрация')}:</p>
+							<p className=' text-2xl m-1'>{t('Вибрация')}:</p>
 							<Switch
 								checked={vibration == 0 ? false : true}
 								onChange={() => {

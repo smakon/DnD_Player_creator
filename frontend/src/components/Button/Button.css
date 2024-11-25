@@ -24,9 +24,3 @@ button:hover{
    filter: brightness(95%);
 }
 }
-
-@media screen and (width <= 768px) {
-   button:hover{
-
-   }
-}

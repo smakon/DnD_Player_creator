@@ -66,7 +66,6 @@ app.post('/findUser/:name/:password', async (req, res) => {
 				req.params.password,
 				result[0].password
 			)
-			console.log(password)
 
 			if (password == true) {
 				res.send(result)

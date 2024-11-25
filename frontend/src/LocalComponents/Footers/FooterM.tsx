@@ -4,27 +4,39 @@ import Input from '../../components/Input/Input'
 import { PlusOutlined } from '@ant-design/icons'
 
 export const FooterM = () => {
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const button = e.currentTarget
+		button.classList.add('animate-shake')
+		button.addEventListener(
+			'animationend',
+			() => {
+				button.classList.remove('animate-shake')
+			},
+			{ once: true }
+		)
+	}
 	return (
 		<footer>
 			<Flex vertical={false} justify='space-around' align='center'>
-				<Button label='Create room' style={{}}/>
+				<Button label='Create room' style={{}} />
 				<div className='join flex'>
 					<Input
 						type='text'
 						placeholder='Join Code'
 						style={{
-                     borderRadius: '19px 0 0 19px',
-                     width: "25dvw"
-
-                  }}
-                  
+							borderRadius: '19px 0 0 19px',
+							width: '25dvw',
+						}}
 					/>
-					<Button
-						label='Join'
+					<button
+						onClick={handleClick}
+						className='join btn'
 						style={{
 							borderRadius: '0 19px 19px 0',
 						}}
-					/>
+					>
+						Join
+					</button>
 				</div>
 
 				<Button
