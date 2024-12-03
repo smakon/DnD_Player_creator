@@ -55,3 +55,9 @@ export function updateUser(
 		)
    return response
 }
+
+export function createCharacter() { 
+	const user = new User()
+	const response = user.createCharacter(Number(userId))
+	return response
+}

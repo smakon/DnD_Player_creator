@@ -2,13 +2,22 @@ import { Footer } from "../Footer"
 
 export interface HomeProps {
 	currentDevice: object
+	userCharacters: {
+		id: number
+		user_id: number
+		name: string
+		class: string
+		race: string
+		create_date: string
+		level: number
+		created_at: string
+	}[]
 }
-function Home({ currentDevice}: HomeProps) {
+function Home({ currentDevice, userCharacters}: HomeProps) {
 	return (
 		<>
-			<p className='className text-red-500'>Hello</p>
-         <Footer currentDevice={currentDevice}/>
-      </>
+			<Footer currentDevice={currentDevice} userCharacters={ userCharacters } />
+		</>
 	)
 }
 

@@ -1,20 +1,158 @@
-.information{
+.profile {
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   gap: 25rem;
+
+   margin-left: 10dvw;
+   margin-right: 10dvw;
+   margin-top: 2dvh;
+   margin-bottom: 2dvh;
+}
+
+.information {
    display: flex;
    justify-content: center;
    flex-direction: column;
    align-items: start;
+   
 
-   margin-left: 15dvw;
-   margin-top: 3dvw;
+   h2{
+      white-space:nowrap;
+   }
 }
 
-@media screen and (max-width: 900px){
-   .information{
+.wrap {
+   display: inline-block;
+   border: 2px solid #000;
+   border-radius: 20px;
+   overflow: hidden;
+
+   table {
+      width: 100%;
+      table-layout: fixed;
+
+      td {
+         width: 20%;
+         font-size: 1dvw;
+         text-align: center;
+         padding: 8px;
+      }
+   }
+}
+
+%common-border-styles {
+   border: 2px solid #000;
+   &:first-child {
+      border-left: none;
+   }
+   &:last-child {
+      border-right: none;
+   }
+}
+
+.table-head {
+   overflow-x: "auto";
+   td {
+      background-color: #333333;
+      color: #f9f9f9;
+      
+      &:first-child {
+         border-radius: 18px 0 0 0;
+      }
+
+      &:last-child {
+         border-radius: 0 18px 0 0;
+      }
+   }
+}
+
+.table-body-wrapper {
+   overflow-x: auto;
+   max-height: 20dvw;
+
+   .table-body {
+      border-collapse: collapse;
+      width: 100%;
+
+      tr:nth-child(even) {
+         background-color: darken(white, 10);
+      }
+
+      td {
+         @extend %common-border-styles;
+      }
+
+      tr:first-child > td {
+         border-top: none;
+      }
+
+      tr:last-child > td {
+         border-bottom: none;
+      }
+   }
+}
+
+::-webkit-scrollbar {
+   width: 3px;
+}
+::-webkit-scrollbar-track {
+   border-radius: 200px;
+}
+::-webkit-scrollbar-thumb {
+   background-color: #888;
+   border-radius: 20px;
+}
+
+@media screen and (max-width: 900px) {
+   .profile {
+      gap: 5dvh;
+      flex-wrap: wrap;
+   }
+   .information {
       margin-left: 0;
       align-items: center;
 
-      h2{
+      h2 {
          text-align: center;
       }
+   }
+   .wrap{
+      table{
+         td {
+            font-size: 2.5dvw;
+            padding: 5px;
+         }
+      }
+   }
+   .table-body-wrapper{
+      max-height: 28dvh;
+   }
+}
+
+@media screen and (max-width: 1600px ) and (min-width: 901px) {
+   .profile {
+      gap: 15dvh;
+   }
+   .information {
+      margin-left: 0;
+      align-items: center;
+
+      h2 {
+         text-align: center;
+      }
+   }
+   .wrap{
+      table{
+         td {
+            font-size: 0.8dvw;
+            width: 50;
+         }
+      }
+   }
+   .table-body-wrapper{
+      max-height: 28dvh;
    }
 }

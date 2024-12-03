@@ -92,4 +92,14 @@ export class User {
 			throw error
 		}
 	}
+
+	public async createCharacter(userId: number): Promise<AxiosResponse> {
+		try {
+         const response: AxiosResponse = await axios.post(`/createCharacter/${userId}`)
+         return response
+      } catch (error) {
+         console.error('Ошибка при создании персонажа:', error)
+         throw error
+      }
+	}
 }

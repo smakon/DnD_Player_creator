@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n from './i18n'
 import ResetPassword from './LocalComponents/ResetPass/ResetPassword'
+import CharacterList from './LocalComponents/Character_list'
 
 const device = require('current-device').default
 
@@ -32,7 +33,18 @@ function App() {
 		language: 'ru',
 		dice_count: 0,
 	})
-	const [userCharacters, setUserCharacters] = useState([{}])
+	const [userCharacters, setUserCharacters] = useState<
+		{
+			id: number
+			user_id: number
+			name: string
+			class: string
+			race: string
+			create_date: string
+			level: number
+			created_at: string
+		}[]
+	>([])
 	const [userBook, setUserBook] = useState([{}])
 	const [language, setLanguage] = useState('ru')
 	const [vibration, setVibration] = useState(0)
@@ -81,15 +93,14 @@ function App() {
 	useEffect(() => {
 		try {
 			setLanguage(userData.language)
-         setVibration(userData.vibration)
-         setTheme(userData.theme)
-         i18n.changeLanguage(userData.language)
-		}
-		catch(userData){
+			setVibration(userData.vibration)
+			setTheme(userData.theme)
+			i18n.changeLanguage(userData.language)
+		} catch (userData) {
 			setLanguage('ru')
-         setVibration(30)
-         setTheme(0)
-         i18n.changeLanguage('ru')
+			setVibration(30)
+			setTheme(0)
+			i18n.changeLanguage('ru')
 		}
 	}, [userData])
 
@@ -104,10 +115,19 @@ function App() {
 				vibration={vibration}
 			/>
 			<Routes>
-				<Route path='/' element={<Home currentDevice={currentDevice} />} />
+				<Route
+					path='/'
+					element={
+						<Home
+							userCharacters={userCharacters}
+							currentDevice={currentDevice}
+						/>
+					}
+				/>
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				<Route path='forgotPassword' element={<ResetPassword />} />
+				<Route path='character/:id' element={<CharacterList />} />
 				<Route
 					path='profile'
 					element={

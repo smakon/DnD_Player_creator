@@ -45,7 +45,6 @@ const Header = ({ userAccount, setTheme, theme, userData, vibration, language }:
 		setTheme(number)
 		updateUser(userData.dice_count, number, vibration, language)
 	}
-	console.log(theme);
 	
 	return (
 		<header>

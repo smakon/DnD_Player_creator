@@ -30,7 +30,7 @@ const Login = () => {
 				const data = user.data
 				console.log(data);
 				
-				if (data.id !== 0) {
+				if (Array.isArray(data)) {
 					createNotify('success', 'Вход успешно выполнен')
 					setCookie('id', data[0].id, 1)
 					window.location.href = '/'
@@ -40,6 +40,10 @@ const Login = () => {
 				else if (data == "No user found") {
 					createNotify('error', 'Пользователь с таким именем не найден')
 				}
+				else{
+					createNotify('error', 'Что-то пошло не так')
+				}
+
 			})
 		}
 	}

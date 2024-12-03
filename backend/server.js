@@ -106,7 +106,7 @@ app.post('/createUser/:name/:password', async (req, requestResult) => {
 })
 
 app.post('/getUserCharacters/:id', async (req, res) => {
-	let sql = `SELECT * FROM characters WHERE user_id = ${req.params.id}`
+	let sql = `SELECT * FROM characters WHERE user_id = ${req.params.id} order by id DESC`
 	conn.query(sql, (err, result) => {
 		if (err) {
 			console.log(err)
@@ -147,6 +147,16 @@ app.post(
 		})
 	}
 )
+
+app.post('/createCharacter/:userId', async (req, res) => { 
+	let sql = `INSERT INTO characters (user_id, create_date) VALUES (?, CURRENT_DATE)`
+   conn.query(sql,req.params.userId, (err, result) => {
+      if (err) {
+         console.log(err)
+      }
+      res.send(result)
+   })
+})
 
 const PORT = 2205
 app.listen(PORT, (err, result) => {

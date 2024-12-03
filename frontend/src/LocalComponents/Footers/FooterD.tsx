@@ -1,8 +1,23 @@
 import { Flex } from 'antd'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
+import CreateList from '../Buttons/createList'
 
-export const FooterD = () => {
+
+export interface footerDProps {
+	userCharacters: {
+		id: number
+		user_id: number
+		name: string
+		class: string
+		race: string
+		create_date: string
+		level: number
+		created_at: string
+	}[]
+}
+
+export const FooterD = ({ userCharacters }: footerDProps) => {
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const button = e.currentTarget
 		button.classList.add('animate-shake')
@@ -14,6 +29,7 @@ export const FooterD = () => {
 			{ once: true }
 		)
 	}
+
 	return (
 		<footer>
 			<Flex vertical={false} justify='space-around' align='center'>
@@ -37,24 +53,7 @@ export const FooterD = () => {
 						Join
 					</button>
 				</div>
-
-				<button className='create__list'>
-					<span>
-						<svg
-							height='24'
-							width='24'
-							viewBox='0 0 24 24'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path d='M0 0h24v24H0z' fill='none'></path>
-							<path
-								d='M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z'
-								fill='currentColor'
-							></path>
-						</svg>
-						Create
-					</span>
-				</button>
+				<CreateList userCharacters={userCharacters} />
 			</Flex>
 		</footer>
 	)
