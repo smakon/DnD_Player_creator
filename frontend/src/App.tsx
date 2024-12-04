@@ -19,7 +19,7 @@ import CharacterList from './LocalComponents/Character_list'
 const device = require('current-device').default
 
 function App() {
-	const [currentDevice, setDevice] = useState(device.desktop())
+	const [currentDevice, setDevice] = useState('desktop')
 
 	const [userAccount, setUserAccount] = useState({
 		id: '',
@@ -85,6 +85,7 @@ function App() {
 	}
 
 	useEffect(() => {
+		setDevice(device.type)
 		fetchUserAccount()
 		fetchUserData()
 		fetchUserCharacters()

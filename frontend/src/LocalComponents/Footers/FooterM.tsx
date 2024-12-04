@@ -2,8 +2,23 @@ import { Flex } from 'antd'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import { PlusOutlined } from '@ant-design/icons'
+import { createCharacter } from '../../functions/user'
 
-export const FooterM = () => {
+
+export interface footerMProps {
+	userCharacters: {
+		id: number
+		user_id: number
+		name: string
+		class: string
+		race: string
+		create_date: string
+		level: number
+		created_at: string
+	}[]
+}
+
+export const FooterM = ({userCharacters}: footerMProps) => {
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const button = e.currentTarget
 		button.classList.add('animate-shake')
@@ -14,6 +29,12 @@ export const FooterM = () => {
 			},
 			{ once: true }
 		)
+	}
+
+	const createList = () => {
+		createCharacter()
+		window.location.reload()
+		window.location.href = `/character/${userCharacters[0].id + 1}`
 	}
 	return (
 		<footer>
@@ -38,8 +59,9 @@ export const FooterM = () => {
 						Join
 					</button>
 				</div>
-
+				
 				<Button
+					onClick={() => createList()}
 					label=''
 					style={{
 						border: '2px solid #24b4fb',

@@ -5,7 +5,7 @@ import { FooterD } from './Footers/FooterD'
 
 
 export interface FooterProps{
-   currentDevice: object;
+   currentDevice: string;
 	userCharacters: {
 		id: number
 		user_id: number
@@ -23,7 +23,7 @@ export const Footer = ({currentDevice, userCharacters}: FooterProps) => {
    
 
    if (currentDevice) { return <FooterD userCharacters={userCharacters}/> }
-   else { return <FooterM /> }
+   else { return <FooterM userCharacters={userCharacters}/> }
 
 }
 

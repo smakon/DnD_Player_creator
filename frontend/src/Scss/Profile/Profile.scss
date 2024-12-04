@@ -1,4 +1,11 @@
-.profile {
+.profile{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content:space-between;
+}
+
+.profile-inf {
    display: flex;
    align-items: flex-start;
    justify-content: center;
@@ -107,7 +114,7 @@
 }
 
 @media screen and (max-width: 900px) {
-   .profile {
+   .profile-inf {
       gap: 5dvh;
       flex-wrap: wrap;
    }
@@ -128,12 +135,12 @@
       }
    }
    .table-body-wrapper{
-      max-height: 28dvh;
+      max-height: 25dvh;
    }
 }
 
 @media screen and (max-width: 1600px ) and (min-width: 901px) {
-   .profile {
+   .profile-inf {
       gap: 15dvh;
    }
    .information {
@@ -153,6 +160,6 @@
       }
    }
    .table-body-wrapper{
-      max-height: 28dvh;
+      max-height: 25dvh;
    }
 }

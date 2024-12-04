@@ -4,7 +4,8 @@ import i18n from '../../i18n'
 import '../../Scss/Profile/Profile.css'
 import { updateUser } from '../../functions/user'
 import { useEffect, useState } from 'react'
-import { number, string } from 'prop-types'
+import GetOutDesktop from '../Buttons/getOutButtonDesktop/getOutDesktop'
+import GetOutMobile from '../Buttons/getOutButtonMobile/getOutMobile'
 
 const device = require('current-device').default
 
@@ -37,7 +38,7 @@ export interface ProfileProps {
 	t: (value: string) => string
 	setVibration: (value: number) => void
 	vibration: number
-	currentDevice: object
+	currentDevice: string
 }
 
 const Profile = ({
@@ -66,18 +67,18 @@ const Profile = ({
 	if (!isAuthenticated) {
 		return null; 
 	}
-
+	
 	const handleVibration = (number: number) => {
 		setVibration(number)
 		updateUser(userData.dice_count, userData.theme, number, language)
 	}
 
 	return (
-		<>
+		<div className='profile'>
 			<h1 className=' text-4xl font-bold flex justify-center mt-3'>
 				{t('Привет')} {userAccount.name}
 			</h1>
-			<div className='profile mt-4'>
+			<div className='profile-inf mt-4'>
 				<div className='information'>
 					<h2 className='text-3xl font-bold mb-1'>
 						{t('Статистика аккаунта')}:
@@ -169,7 +170,8 @@ const Profile = ({
 					</div>
 				</div>
 			</div>
-		</>
+			{currentDevice == 'desktop' ? <GetOutDesktop /> : <GetOutMobile />}
+		</div>
 	)
 }
 

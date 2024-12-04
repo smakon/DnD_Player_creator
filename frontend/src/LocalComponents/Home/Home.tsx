@@ -1,7 +1,7 @@
 import { Footer } from "../Footer"
 
 export interface HomeProps {
-	currentDevice: object
+	currentDevice: string
 	userCharacters: {
 		id: number
 		user_id: number

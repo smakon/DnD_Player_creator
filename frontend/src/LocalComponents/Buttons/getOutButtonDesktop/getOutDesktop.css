@@ -1,0 +1,45 @@
+.getOutD {
+   margin-top: 24dvh;
+
+   display: inline-block;
+   padding: 0.9rem 1.8rem;
+   font-size: 20px;
+   font-weight:700;
+   color: black;
+   border: 3px solid rgb(252, 70, 100);
+   cursor: pointer;
+   position: relative;
+   background-color: transparent;
+   overflow: hidden;
+   z-index: 1;
+   transition: color 0.3s, text-shadow 0.3s;
+}
+
+.getOutD::before {
+   content: '';
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgb(252, 70, 100);
+   transform: translateX(-100%);
+   transition: transform 0.3s;
+   z-index: -1;
+}
+
+.getOutD:hover::before {
+   transform: translateX(0);
+}
+
+
+.getOutD:hover {
+   color: rgb(255, 255, 255);
+   text-shadow: 0 0 0.1px white, 0 0 0.1px white;
+}
+
+.getOutD:hover {
+   box-shadow: 0 0 5px rgba(252, 70, 100, 0.5), 
+      0 0 10px rgba(252, 70, 100, 0.5), 
+      0 0 15px rgba(252, 70, 100, 0.5);
+}
