@@ -22,7 +22,7 @@ export interface FooterProps{
 export const Footer = ({currentDevice, userCharacters}: FooterProps) => {
    
 
-   if (currentDevice) { return <FooterD userCharacters={userCharacters}/> }
+   if (currentDevice == 'desktop') { return <FooterD userCharacters={userCharacters}/> }
    else { return <FooterM userCharacters={userCharacters}/> }
 
 }
