@@ -3,8 +3,7 @@ import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import { PlusOutlined } from '@ant-design/icons'
 import { createCharacter } from '../../functions/user'
-import { allCharacters } from '../../functions/unsorted'
-
+import { allCharacters } from '../../functions/characters'
 
 export const FooterM = () => {
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,7 +57,7 @@ export const FooterM = () => {
 						Join
 					</button>
 				</div>
-				
+
 				<Button
 					onClick={() => createList()}
 					label=''

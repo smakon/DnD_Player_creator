@@ -120,7 +120,6 @@ function App() {
 					path='/'
 					element={
 						<Home
-							userCharacters={userCharacters}
 							currentDevice={currentDevice}
 						/>
 					}

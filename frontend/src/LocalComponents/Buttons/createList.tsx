@@ -1,7 +1,5 @@
-import { object } from "prop-types"
-import { createCharacter, getUserCharacters } from "../../functions/user"
-import { allCharacters } from "../../functions/unsorted"
-
+import { createCharacter } from "../../functions/user"
+import { allCharacters } from "../../functions/characters"
 
 
 const CreateList = () => {
