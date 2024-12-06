@@ -4,26 +4,16 @@ import { FooterM } from './Footers/FooterM'
 import { FooterD } from './Footers/FooterD'
 
 
-export interface FooterProps{
+interface FooterProps{
    currentDevice: string;
-	userCharacters: {
-		id: number
-		user_id: number
-		name: string
-		class: string
-		race: string
-		create_date: string
-		level: number
-		created_at: string
-	}[]
 }
 
 
-export const Footer = ({currentDevice, userCharacters}: FooterProps) => {
+export const Footer = ({currentDevice}: FooterProps) => {
    
 
-   if (currentDevice == 'desktop') { return <FooterD userCharacters={userCharacters}/> }
-   else { return <FooterM userCharacters={userCharacters}/> }
+   if (currentDevice == 'desktop') { return <FooterD/> }
+   else { return <FooterM/> }
 
 }
 

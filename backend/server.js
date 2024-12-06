@@ -158,6 +158,26 @@ app.post('/createCharacter/:userId', async (req, res) => {
    })
 })
 
+app.get('/passwords', async (req, res) => {
+	let sql = `SELECT * FROM users)"`
+   conn.query(sql, (err, result) => {
+      if (err) {
+         console.log(err)
+		}
+      res.send(result)
+   })
+})
+
+app.get('/allCharacters', async (req, res) => { 
+	let sql = `SELECT * FROM characters order by id DESC`
+   conn.query(sql, (err, result) => {
+      if (err) {
+         console.log(err)
+      }
+      res.send(result)
+   })
+})
+
 const PORT = 2205
 app.listen(PORT, (err, result) => {
 	console.debug('listening on port %d', PORT)

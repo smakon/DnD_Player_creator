@@ -4,20 +4,7 @@ import Input from '../../components/Input/Input'
 import CreateList from '../Buttons/createList'
 
 
-export interface footerDProps {
-	userCharacters: {
-		id: number
-		user_id: number
-		name: string
-		class: string
-		race: string
-		create_date: string
-		level: number
-		created_at: string
-	}[]
-}
-
-export const FooterD = ({ userCharacters }: footerDProps) => {
+export const FooterD = () => {
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const button = e.currentTarget
 		button.classList.add('animate-shake')
@@ -53,7 +40,7 @@ export const FooterD = ({ userCharacters }: footerDProps) => {
 						Join
 					</button>
 				</div>
-				<CreateList userCharacters={userCharacters} />
+				<CreateList/>
 			</Flex>
 		</footer>
 	)

@@ -3,22 +3,10 @@ import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import { PlusOutlined } from '@ant-design/icons'
 import { createCharacter } from '../../functions/user'
+import { allCharacters } from '../../functions/unsorted'
 
 
-export interface footerMProps {
-	userCharacters: {
-		id: number
-		user_id: number
-		name: string
-		class: string
-		race: string
-		create_date: string
-		level: number
-		created_at: string
-	}[]
-}
-
-export const FooterM = ({userCharacters}: footerMProps) => {
+export const FooterM = () => {
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const button = e.currentTarget
 		button.classList.add('animate-shake')
@@ -33,8 +21,19 @@ export const FooterM = ({userCharacters}: footerMProps) => {
 
 	const createList = () => {
 		createCharacter()
-		window.location.reload()
-		window.location.href = `/character/${userCharacters[0].id + 1}`
+		allCharacters()
+			.then(character => {
+				const data = character.data
+
+				if (data.length != 0) {
+					window.location.href = `/character/${data[0].id + 1}`
+				} else {
+					window.location.href = '/character/1'
+				}
+			})
+			.catch(error => {
+				console.error('Ошибка при получении персонажа:', error)
+			})
 	}
 	return (
 		<footer>
