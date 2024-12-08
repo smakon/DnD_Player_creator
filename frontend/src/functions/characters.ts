@@ -5,3 +5,9 @@ export function allCharacters(){
    const response = characters.allCharacters()
    return response
 }
+
+export function getCharacter(id: number) {
+   const characters = new Characters()
+   const response = characters.getCharacter(id)
+   return response
+}

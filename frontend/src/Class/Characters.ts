@@ -13,4 +13,16 @@ export class Characters {
          throw error
       }
    }
+
+   public async getCharacter(id: number): Promise<AxiosResponse> { 
+      try {
+         const response: AxiosResponse =
+            await axios.get(`/geCharacter/${id}`)
+         return response
+      }
+      catch (error) {
+         console.error('Ошибка при получении данных персонажа:', error)
+         throw error
+      }
+   }
 }

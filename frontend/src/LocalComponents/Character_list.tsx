@@ -6,7 +6,7 @@ const CharacterList = () => {
    // TODO: Заполнить
    return (
       <div>
-         <h2>Character List { id }</h2>
+         
       </div>
    );
 }

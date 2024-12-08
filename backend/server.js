@@ -178,6 +178,16 @@ app.get('/allCharacters', async (req, res) => {
    })
 })
 
+app.get('/getCharacter/:id', async (req, res) => { 
+	let sql = `SELECT * FROM characters WHERE id = ${req.params.id}`
+   conn.query(sql, (err, result) => {
+      if (err) {
+         console.log(err)
+      }
+      res.send(result)
+   })
+})
+
 const PORT = 2205
 app.listen(PORT, (err, result) => {
 	console.debug('listening on port %d', PORT)
