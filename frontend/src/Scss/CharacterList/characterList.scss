@@ -1,0 +1,79 @@
+*{
+   --lvlBarColor: rgb(255, 99, 117);
+}
+
+.list__head{
+   .levelBar{  
+      display: flex;
+      gap: 0.1rem;
+      width: 14dvw;
+      .currentLevel{
+         height: 1.2rem;
+         border: 2px solid var(--lvlBarColor);
+         border-radius: 19px 0 0 19px;
+         background-color: var(--lvlBarColor);
+         padding:0px 10px;
+
+         p{
+            text-align: center;
+            font-size: 1.3dvh;
+            white-space:nowrap;
+         }
+      }
+
+      .line{
+         height: 1.2rem;
+         width: var(--progress);
+         border-radius: 0 19px 19px 0;
+         background-color: var(--lvlBarColor);
+         .experience{
+            padding:0px 10px;
+            font-size: 1.3dvh;
+            height: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            border: 2px solid var(--lvlBarColor);
+            border-radius: 0 19px 19px 0;
+            width: 10dvw;
+         }
+      }
+   }
+
+   .miniLevelBar{
+      display: flex;
+      gap: 0.2rem;
+      width: 15dvw;
+      padding:0px 10px;
+      justify-content: space-between;
+      height: 1.2rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      .line_wrapper{
+         display: flex;
+         width: 100%;
+      }
+      .expLineMini{
+         width:  var(--progress);
+         background-color: rgb(71, 71, 170);
+         height: 5px;
+         
+         p{
+            font-size: small;
+            transform: translate(70%, -100%);
+            margin-left: var(--progress);
+         }
+      }
+
+      .lineMini{
+         width: calc(100% - var(--progress));
+         background-color: grey;
+         height: 5px;
+      }
+
+      .endExp, .startExp{
+         font-size: smaller;
+         color: rgb(149, 149, 149);
+      }
+
+   }
+}

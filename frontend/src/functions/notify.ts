@@ -1,11 +1,17 @@
 import { Bounce, toast, ToastPosition } from 'react-toastify'
 
-export const createNotify = (
+interface notifyProps{
+	appearance?: 'success' | 'warn' | 'info' | 'error'
+   message?: string,
+   theme?: 0 | 1,
+   position?: ToastPosition,
+}
+export const createNotify = ({
 	appearance = 'success',
-	message = 'default message',
+	message = 'Success',
 	theme = 1,
-	position: ToastPosition = 'top-center',
-) => {
+	position = 'top-center',
+}: notifyProps) => {
 	// ! Функция по созданию алертиков
 	// * принимает в себя вид алерта и сообщение алерта
 	switch (appearance) {

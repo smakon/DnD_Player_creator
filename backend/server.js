@@ -44,8 +44,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/getUser/:id', async (req, res) => {
-	let sql = `select * from users where id = "${req.params.id}"`
-	conn.query(sql, (err, result) => {
+	let sql = `select * from users where id = ?`
+	conn.query(sql, [req.params.id], (err, result) => {
 		if (err) {
 			console.log(err)
 		}
@@ -54,8 +54,8 @@ app.post('/getUser/:id', async (req, res) => {
 })
 
 app.post('/findUser/:name/:password', async (req, res) => {
-	let sql = `select * from users where name = "${req.params.name}"`
-	conn.query(sql, (err, result) => {
+	let sql = `select * from users where name = ?`
+	conn.query(sql, [req.params.name], (err, result) => {
 		if (err) {
 			console.log('err')
 			res.send(false)
@@ -77,11 +77,11 @@ app.post('/findUser/:name/:password', async (req, res) => {
 })
 
 app.post('/createUser/:name/:password', async (req, requestResult) => {
-	let isUserSqlReq = `SELECT * FROM users WHERE name = "${req.params.name}"`
+	let isUserSqlReq = `SELECT * FROM users WHERE name = ?`
 	const salt = await bcrypt.genSalt(10)
 	const password = await bcrypt.hash(req.params.password, salt)
 	let sql = `INSERT INTO users (name,password) VALUES (?, ?);`
-	conn.query(isUserSqlReq, (err, result) => {
+	conn.query(isUserSqlReq, [req.params.name], (err, result) => {
 		let resArr = []
 		resArr.push(result)
 		if (resArr[0].length == 0) {
@@ -89,9 +89,10 @@ app.post('/createUser/:name/:password', async (req, requestResult) => {
 				if (err) {
 					throw err
 				} else {
-					conn.query(isUserSqlReq, (err, result) => {
+					conn.query(isUserSqlReq, [req.params.name], (err, result) => {
 						conn.query(
-							`INSERT INTO user_data (user_id) VALUES (${result[0].id})`,
+							`INSERT INTO user_data (user_id) VALUES (?)`,
+							[result[0].id],
 							(err, result) => {
 								requestResult.send(true)
 							}
@@ -106,8 +107,8 @@ app.post('/createUser/:name/:password', async (req, requestResult) => {
 })
 
 app.post('/getUserCharacters/:id', async (req, res) => {
-	let sql = `SELECT * FROM characters WHERE user_id = ${req.params.id} order by id DESC`
-	conn.query(sql, (err, result) => {
+	let sql = `SELECT * FROM characters WHERE user_id = ? order by id DESC`
+	conn.query(sql, [req.params.id], (err, result) => {
 		if (err) {
 			console.log(err)
 		}
@@ -116,8 +117,8 @@ app.post('/getUserCharacters/:id', async (req, res) => {
 })
 
 app.post('/getUserBook/:id', async (req, res) => {
-	let sql = `SELECT * FROM user_ms_book WHERE user_id = ${req.params.id}`
-	conn.query(sql, (err, result) => {
+	let sql = `SELECT * FROM user_ms_book WHERE user_id = ?`
+	conn.query(sql, [req.params.id], (err, result) => {
 		if (err) {
 			console.log(err)
 		}
@@ -126,8 +127,8 @@ app.post('/getUserBook/:id', async (req, res) => {
 })
 
 app.post('/getUserData/:id', async (req, res) => {
-	let sql = `SELECT * FROM user_data WHERE user_id = ${req.params.id}`
-	conn.query(sql, (err, result) => {
+	let sql = `SELECT * FROM user_data WHERE user_id = ?`
+	conn.query(sql, [req.params.id], (err, result) => {
 		if (err) {
 			console.log(err)
 		}
@@ -138,57 +139,86 @@ app.post('/getUserData/:id', async (req, res) => {
 app.post(
 	'/updateUserData/:id/:dice/:theme/:vibration/:language',
 	async (req, res) => {
-		let sql = `UPDATE user_data SET theme = "${req.params.theme}", vibration = "${req.params.vibration}", language = "${req.params.language}", dice_count = "${req.params.dice}" WHERE user_id = ${req.params.id}`
-		conn.query(sql, (err, result) => {
-			if (err) {
-				console.log(err)
+		let sql = `UPDATE user_data SET theme = ?, vibration = ?, language = ?, dice_count = ? WHERE user_id = ?`
+		conn.query(
+			sql,
+			[
+				req.params.theme,
+				req.params.vibration,
+				req.params.language,
+				req.params.dice,
+				req.params.id,
+			],
+			(err, result) => {
+				if (err) {
+					console.log(err)
+				}
+				res.send(result)
 			}
-			res.send(result)
-		})
+		)
 	}
 )
 
-app.post('/createCharacter/:userId', async (req, res) => { 
+app.post('/createCharacter/:userId', async (req, res) => {
 	let sql = `INSERT INTO characters (user_id, create_date) VALUES (?, CURRENT_DATE)`
-   conn.query(sql,req.params.userId, (err, result) => {
-      if (err) {
-         console.log(err)
-      }
-      res.send(result)
-   })
+	conn.query(sql, req.params.userId, (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
 })
 
 app.get('/passwords', async (req, res) => {
 	let sql = `SELECT * FROM users)"`
-   conn.query(sql, (err, result) => {
-      if (err) {
-         console.log(err)
+	conn.query(sql, (err, result) => {
+		if (err) {
+			console.log(err)
 		}
-      res.send(result)
-   })
+		res.send(result)
+	})
 })
 
-app.get('/allCharacters', async (req, res) => { 
+app.get('/allCharacters', async (req, res) => {
 	let sql = `SELECT * FROM characters order by id DESC`
-   conn.query(sql, (err, result) => {
-      if (err) {
-         console.log(err)
-      }
-      res.send(result)
-   })
+	conn.query(sql, (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
 })
 
-app.get('/getCharacter/:id', async (req, res) => { 
-	let sql = `SELECT * FROM characters WHERE id = ${req.params.id}`
-   conn.query(sql, (err, result) => {
-      if (err) {
-         console.log(err)
-      }
-      res.send(result)
-   })
+app.get('/getCharacter/:id', async (req, res) => {
+	let sql = `SELECT * FROM characters WHERE id = ?`
+	conn.query(sql, [req.params.id], (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
 })
 
-const PORT = 2205
-app.listen(PORT, (err, result) => {
-	console.debug('listening on port %d', PORT)
+app.post('/updateCharacter/:id/:level/:race/:class/:name', async (req, res) => {
+	let sql = 'UPDATE characters SET level = ?, race = ?, class = ?, name = ? WHERE id = ?'
+	conn.query(
+		sql,
+		[
+			req.params.level,
+			req.params.race,
+			req.params.class,
+			req.params.name,
+			req.params.id,
+		],
+		(err, result) => {
+			if (err) {
+            console.log(err)
+         }
+         res.send(result)
+		}
+	)
+})
+const port = 2205
+app.listen(port, (err, result) => {
+	console.debug('listening on port %d', port)
 })

@@ -1,0 +1,70 @@
+* {
+  --lvlBarColor: rgb(255, 99, 117);
+}
+
+.list__head .levelBar {
+  display: flex;
+  gap: 0.1rem;
+  width: 14dvw;
+}
+.list__head .levelBar .currentLevel {
+  height: 1.2rem;
+  border: 2px solid var(--lvlBarColor);
+  border-radius: 19px 0 0 19px;
+  background-color: var(--lvlBarColor);
+  padding: 0px 10px;
+}
+.list__head .levelBar .currentLevel p {
+  text-align: center;
+  font-size: 1.3dvh;
+  white-space: nowrap;
+}
+.list__head .levelBar .line {
+  height: 1.2rem;
+  width: var(--progress);
+  border-radius: 0 19px 19px 0;
+  background-color: var(--lvlBarColor);
+}
+.list__head .levelBar .line .experience {
+  padding: 0px 10px;
+  font-size: 1.3dvh;
+  height: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid var(--lvlBarColor);
+  border-radius: 0 19px 19px 0;
+  width: 10dvw;
+}
+.list__head .miniLevelBar {
+  display: flex;
+  gap: 0.2rem;
+  width: 15dvw;
+  padding: 0px 10px;
+  justify-content: space-between;
+  height: 1.2rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.list__head .miniLevelBar .line_wrapper {
+  display: flex;
+  width: 100%;
+}
+.list__head .miniLevelBar .expLineMini {
+  width: var(--progress);
+  background-color: rgb(71, 71, 170);
+  height: 5px;
+}
+.list__head .miniLevelBar .expLineMini p {
+  font-size: small;
+  transform: translate(70%, -100%);
+  margin-left: var(--progress);
+}
+.list__head .miniLevelBar .lineMini {
+  width: calc(100% - var(--progress));
+  background-color: grey;
+  height: 5px;
+}
+.list__head .miniLevelBar .endExp, .list__head .miniLevelBar .startExp {
+  font-size: smaller;
+  color: rgb(149, 149, 149);
+}/*# sourceMappingURL=characterList.css.map */

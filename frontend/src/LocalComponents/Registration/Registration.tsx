@@ -35,13 +35,13 @@ const Registration = () => {
 		const password = inputPassword.value
 
 		if (password.length == 0) {
-			createNotify('error', 'Введите пароль')
+			createNotify({ appearance: 'error', message: 'Введите пароль'})
 		} else if (name.length == 0) {
-			createNotify('error', 'Введите имя')
+			createNotify({appearance: 'error', message: 'Введите имя'})
 		} else if (password.length < 8) {
-			createNotify('error', 'Пароль должен быть не менее 8 символов')
+			createNotify({appearance: 'error', message: 'Пароль должен быть не менее 8 символов'})
 		} else if (name.length < 3) {
-			createNotify('error', 'Имя должно быть не менее 3 символов')
+			createNotify({appearance: 'error',message:  'Имя должно быть не менее 3 символов'})
 		} else if (
 			name.includes(' ') ||
 			name.includes('@') ||
@@ -52,15 +52,15 @@ const Registration = () => {
 			name.includes('*') ||
 			name.includes('&')
 		) {
-			createNotify('error', 'Имя не должно содержать пробелы')
+			createNotify({ appearance: 'error', message: 'Имя не должно содержать пробелы'})
 		} else if (name.length == 0 || password.length == 0) {
-			createNotify('error', 'Введите все данные')
+			createNotify({appearance: 'error', message: 'Введите все данные'})
 		} else {
 			createUser(name, password).then(res => {
 				if (res.data) {
 					document.location.href = '/login'
 				} else {
-					createNotify('info', 'Видимо пользователь с таким именем уже есть')
+					createNotify({appearance: 'info', message: 'Видимо пользователь с таким именем уже есть'})
 				}
 			})
 		}

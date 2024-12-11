@@ -14,7 +14,8 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n from './i18n'
 import ResetPassword from './LocalComponents/ResetPass/ResetPassword'
-import CharacterList from './LocalComponents/Character_list'
+import CharacterList from './LocalComponents/CharacterList/Character_list'
+import CharacterError from './LocalComponents/Error/CharacterError'
 
 const device = require('current-device').default
 
@@ -40,8 +41,8 @@ function App() {
 			name: string
 			class: string
 			race: string
-			create_date: string
 			level: number
+			hp: string
 			created_at: string
 		}[]
 	>([])
@@ -116,18 +117,14 @@ function App() {
 				vibration={vibration}
 			/>
 			<Routes>
-				<Route
-					path='/'
-					element={
-						<Home
-							currentDevice={currentDevice}
-						/>
-					}
-				/>
+				<Route path='/' element={<Home currentDevice={currentDevice} />} />
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				<Route path='forgotPassword' element={<ResetPassword />} />
-				<Route path='character/:id' element={<CharacterList />} />
+				<Route
+					path='character/:id'
+					element={<CharacterList userCharacters={userCharacters} />}
+				/>
 				<Route
 					path='profile'
 					element={
@@ -145,6 +142,7 @@ function App() {
 						/>
 					}
 				/>
+				<Route path='/characterError' element={<CharacterError />} />
 			</Routes>
 		</BrowserRouter>
 	)

@@ -28,8 +28,8 @@ export interface ProfileProps {
 		name: string
 		class: string
 		race: string
-		create_date: string
 		level: number
+		hp: string
 		created_at: string
 	}[]
 	userBook: object[]
@@ -157,7 +157,7 @@ const Profile = ({
 											{character.level}
 										</td>
 										<td scope='col' className='border-2 border-black'>
-											{new Date(character.create_date).toLocaleDateString()}
+											{new Date(character.created_at).toLocaleDateString()}
 										</td>
 									</tr>
 								))

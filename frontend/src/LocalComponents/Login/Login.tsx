@@ -24,26 +24,25 @@ const Login = () => {
 		const name = inputName.value
 		const password = inputPassword.value
 		if (name.length == 0 || password.length == 0) {
-			createNotify('error', 'Введите все данные')
+			createNotify({appearance: 'error', message: 'Введите все данные'})
 		} else {
 			findUser(name, password).then(user => {
 				const data = user.data
 				console.log(data);
 				
 				if (Array.isArray(data)) {
-					createNotify('success', 'Вход успешно выполнен')
+					createNotify({appearance: 'success', message: 'Вход успешно выполнен'})
 					setCookie('id', data[0].id, 1)
 					window.location.href = '/'
 				} else if (data == false) {
-					createNotify('error', 'Неверный пароль')
+					createNotify({ appearance: 'error', message: 'Неверный пароль'})
 				}
 				else if (data == "No user found") {
-					createNotify('error', 'Пользователь с таким именем не найден')
+					createNotify({ appearance: 'error', message:  'Пользователь с таким именем не найден'})
 				}
 				else{
-					createNotify('error', 'Что-то пошло не так')
+					createNotify({appearance: 'error', message: 'Что-то пошло не так'})
 				}
-
 			})
 		}
 	}

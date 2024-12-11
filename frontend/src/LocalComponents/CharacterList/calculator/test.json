@@ -1,0 +1,48 @@
+{
+   "Athletics": {
+      "addiction": "Strength",
+      "state": 0,
+      "bonus": ""
+   },
+   "Acrobatics": {
+      "addiction": "Dexterity",
+      "state": 0,
+      "bonus": ""
+   },
+   "Sleight of Hand":{
+      "addiction": "Dexterity",
+      "state": 0,
+      "bonus": ""
+   },
+   "Stealth":{
+      "addiction": "Dexterity",
+      "state": 0,
+      "bonus": ""
+   },
+   "Analysis":{
+      "addiction": "Intelligence",
+      "state": 0,
+      "bonus": ""
+   },
+   "History":{
+      "addiction": "Intelligence",
+      "state": 0,
+      "bonus": ""
+   },
+   "Magic":{
+      "addiction": "Intelligence",
+      "state": 0,
+      "bonus": ""
+   },
+   "Nature": {
+      "addiction": "Intelligence",
+      "state": 0,
+      "bonus": ""
+   },
+   "Religion": {
+      "addiction": "Intelligence",
+      "state": 0,
+      "bonus": ""
+   }
+
+}
