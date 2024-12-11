@@ -165,7 +165,24 @@ app.post('/createCharacter/:userId', async (req, res) => {
 		if (err) {
 			console.log(err)
 		}
-		res.send(result)
+		const lastIdCharacter = result.insertId
+
+		let sql2 = `INSERT INTO character_secondary_info () VALUES();`
+		conn.query(sql2, (err, result2) => {
+			if (err) {
+            console.log(err)
+			} else {
+				const lastIdSecondInfo = result2.insertId;
+            let sql3 = `INSERT INTO character_info (character_id, character_secondary_info_id) VALUES(?, ?);`
+            conn.query(sql3, [lastIdCharacter,lastIdSecondInfo], (err, result3) => {
+					if (err) {
+						console.log(err)
+					} else {
+						res.send('success')
+					}
+				})
+         }
+		})
 	})
 })
 
