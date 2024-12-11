@@ -235,6 +235,26 @@ app.post('/updateCharacter/:id/:level/:race/:class/:name', async (req, res) => {
 		}
 	)
 })
+
+app.get('getCharacterInfo/:character_id', async (req, res) => { 
+	let sql = 'SELECT * FROM character_info WHERE character_id =?'
+   conn.query(sql, [req.params.character_id], (err, result) => {
+      if (err) {
+            console.log(err)
+         }
+         res.send(result)
+   })
+})
+
+app.get('/getCharacterSecondaryInfo/:id', async (req, res) => { 
+	let sql = 'SELECT * FROM character_secondary_info WHERE id =?'
+   conn.query(sql, [req.params.id], (err, result) => {
+      if (err) {
+            console.log(err)
+         }
+         res.send(result)
+   })
+})
 const port = 2205
 app.listen(port, (err, result) => {
 	console.debug('listening on port %d', port)
