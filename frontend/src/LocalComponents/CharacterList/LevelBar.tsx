@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Calculator } from './calculator/Calculator'
 import MiniLevelBar from './MiniLevelBar'
-import { updateCharacter } from '../../functions/characters'
 
 interface levelBarProps {
 	exp: number
-	setExp: (value: number) => void	
+	setExp: (value: number) => void
 }
 
 export const LevelBar = ({ exp, setExp }: levelBarProps) => {
 	const [showCalculator, setShowCalculator] = useState(false)
-	
-	
+
 	const levels: Record<string, number> = {
 		'1': 0,
 		'2': 300,
@@ -41,7 +39,8 @@ export const LevelBar = ({ exp, setExp }: levelBarProps) => {
 
 	const nextLevelExp = levels[Number(currentLevel) + 1]
 	const currentLevelExp = levels[currentLevel]
-	const progressPercentage = ((exp - currentLevelExp) / (nextLevelExp - currentLevelExp)) * 100
+	const progressPercentage =
+		((exp - currentLevelExp) / (nextLevelExp - currentLevelExp)) * 100
 
 	return (
 		<div className='levelBar' onClick={() => setShowCalculator(true)}>
@@ -67,14 +66,13 @@ export const LevelBar = ({ exp, setExp }: levelBarProps) => {
 							setter={setExp}
 							onClose={() => setShowCalculator(false)}
 						>
-							{' '}
 							<MiniLevelBar
 								percent={progressPercentage}
 								exp={exp}
 								currentLevel={Number(currentLevel)}
 								startExp={currentLevelExp}
 								endExp={nextLevelExp}
-							/>{' '}
+							/>
 						</Calculator>
 					</div>
 				</div>

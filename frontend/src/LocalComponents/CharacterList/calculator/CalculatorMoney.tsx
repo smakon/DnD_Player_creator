@@ -1,17 +1,35 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './clac.css'
 import { BackwardOutlined } from '@ant-design/icons'
 
-
-interface calculatorProps {
-   setter: (value: number) => void
-   getter: number 
+interface moneyCalculatorProps {
+	setter: {
+		setGold: (value: number) => void
+		setSilver: (value: number) => void
+		setCopper: (value: number) => void
+		setPlatinum: (value: number) => void
+		setElectrum: (value: number) => void
+	}
+	getter: {
+		gold: number
+		silver: number
+		copper: number
+		platinum: number
+		electrum: number
+	}
 	onClose: () => void
 	children?: React.ReactNode
 }
-export const Calculator = ({ getter,setter, onClose, children=undefined }: calculatorProps) => {
+
+export const CalculatorMoney = ({
+	getter,
+	setter,
+	onClose,
+	children = undefined,
+}: moneyCalculatorProps) => {
 	const [input, setInput] = useState('')
 	const modalRef = useRef<HTMLDivElement>(null)
+	const [coin, setCoin] = useState('g')
 
 	const handleInput = (value: string) => {
 		if (
@@ -23,14 +41,32 @@ export const Calculator = ({ getter,setter, onClose, children=undefined }: calcu
 		setInput(input + value)
 	}
 
-	const calculateResult = () => {
+	const calculateResult = (op: string) => {
 		if (!input) return 0
-		
+
 		try {
-			const result = eval(input)
+			let result = eval(input)
 			setInput('')
 
-			return result
+			switch (coin) {
+				case 'g':
+					setter.setGold(eval(`${getter.gold} ${op} ${result}`))
+					break
+				case 's':
+					setter.setSilver(eval(`${getter.silver} ${op} ${result}`))
+					break
+				case 'c':
+					setter.setCopper(eval(`${getter.copper} ${op} ${result}`))
+					break
+				case 'p':
+					setter.setPlatinum(eval(`${getter.platinum} ${op} ${result}`))
+					break
+				case 'e':
+					setter.setElectrum(eval(`${getter.electrum} ${op} ${result}`))
+					break
+				default:
+					return 0
+			}
 		} catch (error) {
 			alert('Ошибка в вычислении')
 			return 0
@@ -62,7 +98,22 @@ export const Calculator = ({ getter,setter, onClose, children=undefined }: calcu
 			{children}
 			<div className='all'>
 				<div className='buttons'>
-					<div className='input__wrapper expW'>
+					<div className='input__wrapper'>
+						<label className='label'>
+							<div className={`coin-${coin}`}>
+								<p>{coin}</p>
+							</div>
+							<select
+								value={coin}
+								onChange={target => setCoin(target.target.value)}
+							>
+								<option value='g'>Золото</option>
+								<option value='s'>Серебро</option>
+								<option value='c'>Медь</option>
+								<option value='p'>Платина</option>
+								<option value='e'>Электрум</option>
+							</select>
+						</label>
 						<input type='text' value={input} readOnly />
 						<button className='special-button' onClick={clearInput}>
 							<BackwardOutlined />
@@ -89,17 +140,10 @@ export const Calculator = ({ getter,setter, onClose, children=undefined }: calcu
 						<button onClick={() => handleInput('-')}>-</button>
 					</div>
 					<div className='button-row'>
-						<button onClick={() => setter(getter + calculateResult())}>
-							ПРИБАВИТЬ
-						</button>
+						<button onClick={() => calculateResult('+')}>ПРИБАВИТЬ</button>
 						<button
 							onClick={() => {
-								const result = calculateResult()
-								if (getter - result < 0) {
-									return
-								} else {
-									setter(getter - result)
-								}
+								calculateResult('-')
 							}}
 						>
 							ОТНЯТЬ

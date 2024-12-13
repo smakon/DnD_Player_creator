@@ -72,7 +72,8 @@ const Profile = ({
 		setVibration(number)
 		updateUser(userData.dice_count, userData.theme, number, language)
 	}
-
+	console.log(language);
+	
 	return (
 		<div className='profile'>
 			<h1 className=' text-4xl font-bold flex justify-center mt-3'>

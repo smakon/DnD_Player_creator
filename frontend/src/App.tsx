@@ -45,7 +45,8 @@ function App() {
 			hp: string
 			created_at: string
 		}[]
-	>([])
+		>([])
+	
 	const [userBook, setUserBook] = useState([{}])
 	const [language, setLanguage] = useState('ru')
 	const [vibration, setVibration] = useState(0)
