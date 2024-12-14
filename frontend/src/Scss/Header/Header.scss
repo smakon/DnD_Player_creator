@@ -50,6 +50,32 @@ header{
          font-weight: 600;
       }
    }
+
+   .filter_wrapper_modal{
+      font-size: 2dvh;
+      color: #eaeaea;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      h2{
+         font-size: 2.5rem;
+         font-weight: bold;
+         margin-bottom: 1rem;
+      }
+      .classFilt , .raceFilt{
+         display: flex;
+         flex-direction: column;
+         margin-bottom: 1rem;
+         align-items:flex-start;
+      }
+      select{
+         background: transparent;
+         option{
+            background-color: #1b1a2e;
+         }
+      }
+   }
 }
 
 @media screen and (max-width: 508px){

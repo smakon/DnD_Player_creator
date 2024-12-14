@@ -183,4 +183,14 @@ export class Characters {
          throw error
       }
 	}
+
+	public async filter(c_class: string, race: string): Promise<AxiosResponse> {
+		try {
+         const response: AxiosResponse = await axios.get(`/filter/${race}/${c_class}`)
+         return response
+      } catch (error) {
+         console.error('Ошибка при фильтрации персонажей:', error)
+         throw error
+      }
+	}
 }

@@ -106,3 +106,9 @@ export function getCharacterOfName(name: string) {
    const response = characters.getCharacterOfName(name)
    return response
 }
+
+export function filter(c_class: string, race: string) { 
+	const characters = new Characters()
+   const response = characters.filter(c_class, race)
+   return response
+}

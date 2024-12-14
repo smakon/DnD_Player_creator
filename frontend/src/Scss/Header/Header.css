@@ -46,6 +46,31 @@ header .profile__wrapper p {
   color: #F9F9F9;
   font-weight: 600;
 }
+header .filter_wrapper_modal {
+  font-size: 2dvh;
+  color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+header .filter_wrapper_modal h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+header .filter_wrapper_modal .classFilt, header .filter_wrapper_modal .raceFilt {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+header .filter_wrapper_modal select {
+  background: transparent;
+}
+header .filter_wrapper_modal select option {
+  background-color: #1b1a2e;
+}
 
 @media screen and (max-width: 508px) {
   header .filter__wrapper p {
