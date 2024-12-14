@@ -330,7 +330,7 @@ export const ModifyComponent = ({
 							message: `${modifyName}: ${dice20} + ${mod} = ${
 								dice20 + mod
 							}`,
-							theme: 0,
+							theme: 1,
 							position: 'bottom-left',
 						})
          }}>

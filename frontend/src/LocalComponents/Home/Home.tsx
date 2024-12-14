@@ -14,7 +14,7 @@ export interface HomeProps {
 			race: string
 			level: number
 			hp: string
-			created_at: string
+			create_date: string
 		}[]
 	) => void
 	userCharacters: Array<{
@@ -25,7 +25,7 @@ export interface HomeProps {
 		race: string
 		level: number
 		hp: string
-		created_at: string
+		create_date: string
 	}>
 }
 function Home({ currentDevice, userCharacters, setUserCharacters }: HomeProps) {

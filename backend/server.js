@@ -420,7 +420,6 @@ app.get('/getCharactersOfName/:string', async (req, res) => {
 
 app.get('/filter/:race/:class', async (req, res) => { 
 	if (req.params.class !== 'none' && req.params.race !== 'none') {
-		console.log('all')
 		let sql = `SELECT * FROM characters WHERE race = ? AND class = ?`
 		conn.query(sql, [req.params.race, req.params.class], (err, result) => { 
 			if (err) {
@@ -429,8 +428,6 @@ app.get('/filter/:race/:class', async (req, res) => {
          res.send(result)
 		})
 	} else if (req.params.race == 'none') {
-		console.log('class');
-		
 		let sql = `SELECT * FROM characters WHERE class = ?`
 		conn.query(sql, [req.params.class], (err, result) => { 
 			if (err) {
@@ -439,7 +436,6 @@ app.get('/filter/:race/:class', async (req, res) => {
          res.send(result)
 		})
 	} else if (req.params.class == 'none') {
-		console.log('race')
 		let sql = `SELECT * FROM characters WHERE race = ?`
 		conn.query(sql, [req.params.race], (err, result) => { 
 			if (err) {

@@ -25,11 +25,13 @@ export interface HeaderProps {
 			race: string
 			level: number
 			hp: string
-			created_at: string
+			create_date: string
 		}[]
 	) => void
+
+	t: (value: string) => string
 }
-const Header = ({ userAccount, setUserCharacters }: HeaderProps) => {
+const Header = ({ userAccount, setUserCharacters, t }: HeaderProps) => {
 	const nav = useNavigate()
 	const [showModal, setShowModal] = useState(false)
 	const [filterClass, setFilterClass] = useState('none')
@@ -110,7 +112,7 @@ const Header = ({ userAccount, setUserCharacters }: HeaderProps) => {
 		<header>
 			<Flex vertical={false} justify='space-around' align='center'>
 				<Link to='/' style={{ color: '#f9f9f9' }}>
-					Главная
+					{t('Персонажи')}
 				</Link>
 				<div className='search__wrapper' onClick={() => focusOn('name_input')}>
 					<div className='block'>

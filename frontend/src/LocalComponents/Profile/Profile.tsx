@@ -30,7 +30,7 @@ export interface ProfileProps {
 		race: string
 		level: number
 		hp: string
-		created_at: string
+		create_date: string
 	}[]
 	userBook: object[]
 	language: string
@@ -72,7 +72,8 @@ const Profile = ({
 		setVibration(number)
 		updateUser(userData.dice_count, userData.theme, number, language)
 	}
-	console.log(language);
+	
+
 	
 	return (
 		<div className='profile'>
@@ -133,11 +134,11 @@ const Profile = ({
 				<div className='wrap'>
 					<table className='table-head'>
 						<tr>
-							<td scope='col'>Имя</td>
-							<td scope='col'>Раса</td>
-							<td scope='col'>Класс</td>
-							<td scope='col'>Уровень</td>
-							<td scope='col'>Дата создания</td>
+							<td scope='col'>{t('Имя')}</td>
+							<td scope='col'>{t('Раса')}</td>
+							<td scope='col'>{t('Класс')}</td>
+							<td scope='col'>{t('Уровень')}</td>
+							<td scope='col'>{t('Дата создания')}</td>
 						</tr>
 					</table>
 					<div className='table-body-wrapper'>
@@ -158,13 +159,13 @@ const Profile = ({
 											{character.level}
 										</td>
 										<td scope='col' className='border-2 border-black'>
-											{new Date(character.created_at).toLocaleDateString()}
+											{new Date(character.create_date).toLocaleDateString()}
 										</td>
 									</tr>
 								))
 							) : (
 								<tr>
-									<td colSpan={5}>У вас нету персонажей</td>
+									<td colSpan={5}>{t('У вас нету персонажей')}</td>
 								</tr>
 							)}
 						</table>

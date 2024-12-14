@@ -14,7 +14,7 @@ interface CharacterProps {
 		race: string
 		level: number
 		hp: string
-		created_at: string
+		create_date: string
 	}>
 }
 const CharacterList = ({ userCharacters }: CharacterProps) => {

@@ -35,7 +35,7 @@ interface ListHeadProps {
 		race: string
 		level: number
 		hp: string
-		created_at: string
+		create_date: string
 	}>
 
 	characterInfo: {
