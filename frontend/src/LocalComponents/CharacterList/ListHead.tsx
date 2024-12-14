@@ -68,6 +68,7 @@ const ListHead = ({ID, userCharacters, characterInfo, setCharacterInfo}: ListHea
    const [showSettings, setShowSettings] = useState(false)
    const [showHpClac, setShowHpClac] = useState(false)
    const [character_secondary_info_id, setCharacterSecondaryInfoId] = useState(0)
+   const [hpColor, setHPColor] = useState('#669393')
    const [character_money, setCharacterMoney] = useState({
       id: 0,
       golden_coin: 0,
@@ -161,6 +162,7 @@ const ListHead = ({ID, userCharacters, characterInfo, setCharacterInfo}: ListHea
                return err
             })
       }
+
    }, [exp])
 
    useEffect(() => {
@@ -200,6 +202,15 @@ const ListHead = ({ID, userCharacters, characterInfo, setCharacterInfo}: ListHea
    }, [name])
 
    useEffect(() => {
+      const hpPrecent = (currentHp / maxHp) * 100
+      if (hpPrecent >= 100 && hpPrecent >= 60) {
+         setHPColor('#669393')
+      } else if (hpPrecent <= 60 && hpPrecent >= 50) {
+         setHPColor('#f7d571')
+      } else if (hpPrecent <= 50) {
+         setHPColor('#df4b4b')
+      }
+      
       if (race !== '' || getClass !== '') {
          updateCharacter(ID, exp, race, getClass, name, `${currentHp};${maxHp}`)
       }
@@ -303,7 +314,7 @@ const ListHead = ({ID, userCharacters, characterInfo, setCharacterInfo}: ListHea
 					className='hp_wrapper'
 					style={
 						{
-							'--hpColor': '#669393',
+							'--hpColor': `${hpColor}`,
 						} as React.CSSProperties
 					}
 					onClick={() => setShowHpClac(true)}

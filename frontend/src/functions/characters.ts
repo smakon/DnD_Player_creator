@@ -100,3 +100,9 @@ export function updateCharacterSkills(id: number, skills: string) {
    const response = characters.updateCharacterSkills(id, skills)
    return response
 }
+
+export function getCharacterOfName(name: string) { 
+	const characters = new Characters()
+   const response = characters.getCharacterOfName(name)
+   return response
+}

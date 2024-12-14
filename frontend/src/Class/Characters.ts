@@ -171,4 +171,16 @@ export class Characters {
 			throw error
 		}
 	}
+
+	public async getCharacterOfName(name: string): Promise<AxiosResponse> { 
+		try {
+         const response: AxiosResponse = await axios.get(
+						`/getCharactersOfName/${name}`
+					)
+         return response
+      } catch (error) {
+         console.error('Ошибка при получении персонажа по имени:', error)
+         throw error
+      }
+	}
 }

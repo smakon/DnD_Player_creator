@@ -3,9 +3,9 @@ import { AllHTMLAttributes } from 'react';
 
 export interface InputProps extends AllHTMLAttributes<InputProps> {
 	/** Идентификатор поля ввода  Необходимо для стилей и работы с рефами, например, для активации фокуса поля ввода*/
-	name?: string;
+	name?: string
 	/** Размер */
-	inputSize?: 'small' | 'medium' | 'large' 
+	inputSize?: 'small' | 'medium' | 'large'
 	/** Тип ввода*/
 	type?:
 		| 'text'
@@ -41,12 +41,14 @@ export interface InputProps extends AllHTMLAttributes<InputProps> {
 	/** Атрибут required*/
 	required?: boolean
 	/** Класс для поля ввода*/
-   className?: string
-   /** Идентификатор поля ввода  Необходимо для стилей и работы с рефами, например, для активации фокуса поля ввода*/
-   id?: string
+	className?: string
+	/** Идентификатор поля ввода  Необходимо для стилей и работы с рефами, например, для активации фокуса поля ввода*/
+	id?: string
+
+	onChange?: () => void
 }
 
-const Input = ({name=undefined,inputSize='medium',type = 'text', value, placeholder = 'Text...', style={}, required=false, className, id}: InputProps) => {
+const Input = ({name=undefined,inputSize='medium',type = 'text', value, placeholder = 'Text...', style={}, required=false, className, id, onChange= () => {}}: InputProps) => {
    return (
 		<input
 				name={name}
@@ -55,7 +57,8 @@ const Input = ({name=undefined,inputSize='medium',type = 'text', value, placehol
 				style={style}
 				placeholder={placeholder}
 				required={required}
-				className={[`input-${inputSize}`,className].join(' ')}
+				className={[`input-${inputSize}`, className].join(' ')}
+				onChange={() => onChange}
 				id={id}
 			/>
 		)

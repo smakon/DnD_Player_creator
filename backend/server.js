@@ -408,6 +408,16 @@ app.post('/updateCharacterSkills/:id/:skills', async (req, res) => {
    })
 })
 
+app.get('/getCharactersOfName/:string', async (req, res) => { 
+	let sql = `SELECT * FROM characters WHERE name LIKE '%${req.params.string}%'`
+   conn.query(sql, (err, result) => {
+      if (err) {
+         console.log(err)
+      }
+      res.send(result)
+   })
+})
+
 const port = 2205
 app.listen(port, (err, result) => {
 	console.debug('listening on port %d', port)

@@ -45,8 +45,8 @@ function App() {
 			hp: string
 			created_at: string
 		}[]
-		>([])
-	
+	>([])
+
 	const [userBook, setUserBook] = useState([{}])
 	const [language, setLanguage] = useState('ru')
 	const [vibration, setVibration] = useState(0)
@@ -111,14 +111,19 @@ function App() {
 		<BrowserRouter>
 			<Header
 				userAccount={userAccount}
-				setTheme={setTheme}
-				theme={theme}
-				userData={userData}
-				language={language}
-				vibration={vibration}
+				setUserCharacters={setUserCharacters}
 			/>
 			<Routes>
-				<Route path='/' element={<Home currentDevice={currentDevice} />} />
+				<Route
+					path='/'
+					element={
+						<Home
+							currentDevice={currentDevice}
+							userCharacters={userCharacters}
+							setUserCharacters={setUserCharacters}
+						/>
+					}
+				/>
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				<Route path='forgotPassword' element={<ResetPassword />} />
