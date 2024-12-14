@@ -1,5 +1,4 @@
-import React from 'react'
-import '../../Scss/CharacterList/characterList.css'
+import '../../../Scss/CharacterList/characterList.css'
 
 interface MoneyCalcHeaderProps {
 	money_in_gold: number

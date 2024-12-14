@@ -1,6 +1,12 @@
 * {
-  --lvlBarColor: rgb(255, 99, 117);
+  --lvlBarColor: rgb(95, 43, 138);
   --headBg: #ffffff;
+}
+
+.characterList {
+  background-color: #08192e;
+  width: 100%;
+  height: 136dvh;
 }
 
 .list__head {
@@ -11,11 +17,11 @@
   width: 100%;
   padding: 0 15rem;
   padding-top: 1rem;
-  background-color: var(--headBg);
 }
 .list__head p {
   font-size: larger;
   font-weight: bold;
+  color: #eaeaea;
 }
 .list__head .character_settings {
   display: flex;
@@ -45,6 +51,7 @@
 .list__head .main_information {
   display: flex;
   gap: 5rem;
+  color: #eaeaea;
 }
 .list__head .main_information img {
   width: 200px;
@@ -65,6 +72,7 @@
 .list__head .main_information .main_information_body p {
   font-size: 1.7dvh;
   white-space: nowrap;
+  color: #eaeaea;
 }
 .list__head .main_information .main_information_body .class_race_wrapper {
   display: flex;
@@ -75,10 +83,13 @@
   padding-right: 5px;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-color: var(--headBg);
+  background-color: transparent;
 }
 .list__head .main_information .main_information_body .class_race_wrapper select::-ms-expand {
   display: none;
+}
+.list__head .main_information .main_information_body .class_race_wrapper select option {
+  background-color: #08192e;
 }
 .list__head .main_information .main_information_body .class_race_wrapper .class__wrapper select {
   text-align: right;
@@ -92,6 +103,25 @@
   align-items: center;
   gap: 3rem;
 }
+.list__head .secondary_information .hp_wrapper {
+  display: flex;
+  gap: 1rem;
+  border: 3px solid var(--hpColor);
+  padding: 0.2rem;
+  align-items: center;
+}
+.list__head .secondary_information .hp_wrapper svg {
+  font-size: 1.6rem;
+  color: var(--hpColor);
+}
+.list__head .secondary_information .hp_wrapper .hp_inf {
+  display: flex;
+  gap: 0.3rem;
+}
+.list__head .secondary_information .hp_wrapper .hp_inf p {
+  font-size: 1.5em;
+  color: var(--hpColor);
+}
 .list__head .secondary_information .bonus_wrapper, .list__head .secondary_information .speed_wrapper {
   display: flex;
   flex-direction: column;
@@ -101,30 +131,34 @@
 .list__head .secondary_information .bonus_wrapper span, .list__head .secondary_information .speed_wrapper span {
   text-transform: uppercase;
   font-size: 1.5dvh;
+  color: #eaeaea;
 }
 .list__head .secondary_information .bonus_wrapper p, .list__head .secondary_information .speed_wrapper p {
   font-size: 2.5dvh;
   font-weight: bold;
   white-space: nowrap;
+  color: #eaeaea;
 }
 .list__head .secondary_information .bonus_wrapper p {
   margin-right: 15px;
+  color: #eaeaea;
 }
 .list__head .levelBar {
   display: flex;
   gap: 0.1rem;
-  width: 14dvw;
+  width: 16dvw;
+  height: 1rem;
 }
 .list__head .levelBar .currentLevel {
-  height: 1.2rem;
-  border: 2px solid var(--lvlBarColor);
+  height: 1.3rem;
+  border: 3px solid var(--lvlBarColor);
   border-radius: 19px 0 0 19px;
   background-color: var(--lvlBarColor);
   padding: 0px 10px;
 }
 .list__head .levelBar .currentLevel p {
   text-align: center;
-  font-size: 1.3dvh;
+  font-size: 1.4dvh;
   white-space: nowrap;
 }
 .list__head .levelBar .line {
@@ -136,7 +170,7 @@
 .list__head .levelBar .line .experience {
   padding: 0px 10px;
   font-size: 1.3dvh;
-  height: 1.2rem;
+  height: 1.3rem;
   display: flex;
   justify-content: space-between;
   border: 2px solid var(--lvlBarColor);
@@ -180,20 +214,21 @@
 .list__head .shield {
   display: inline-block;
   text-align: center;
-  padding: 2px 2px;
+  padding: 3px 3px;
   position: relative;
   border-radius: 10% 10% 50% 50%;
-  border: 3px solid black;
+  border: 3px solid #eaeaea;
   font-size: larger;
 }
 .list__head .shield ._second {
   display: inline-block;
   text-align: center;
-  padding: 7px 9px;
+  padding: 1px 5px;
   position: relative;
   border-radius: 10% 10% 50% 50%;
-  border: 3px solid black;
+  border: 3px solid #eaeaea;
   font-size: larger;
+  color: #eaeaea;
 }
 .list__head .shield ._second input {
   width: 15px;
@@ -201,21 +236,27 @@
 .list__head .money_wrapper {
   display: flex;
   gap: 1rem;
+  align-items: center;
+}
+.list__head .money_wrapper .money_count {
+  color: #eaeaea;
+  font-size: 2.5dvh;
+  font-weight: bold;
 }
 .list__head .money_wrapper .gold_coin {
-  border: 3px solid gold;
+  border: 4px solid #dbbf27;
   border-radius: 100px;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.8rem;
+  height: 1.8rem;
   display: flex;
   gap: 0.2rem;
   justify-content: center;
   align-items: center;
 }
 .list__head .money_wrapper .gold_coin .goldLine {
-  height: 2rem;
+  height: 2.4rem;
   width: 0.2rem;
-  background-color: gold;
+  background-color: #dbbf27;
   border-radius: 1px;
 }
 .list__head .moneyClacHeader {
@@ -242,6 +283,102 @@
 .list__head .moneyClacHeader .body .right {
   display: flex;
   gap: 1rem;
+}
+
+.list_body .main .modify__wrapper {
+  padding: 2rem 15rem;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: normal;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.list_body .main .modify__wrapper .modify {
+  box-shadow: 0 8px 8px #071629;
+  background-color: #0c2646;
+  border-radius: 19px;
+  color: #eaeaea;
+  width: 30%;
+  padding: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s, color 0.3s;
+}
+.list_body .main .modify__wrapper .modify .mod_info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  gap: 0.2rem;
+}
+.list_body .main .modify__wrapper .modify .mod_info .modify_name {
+  font-size: 2.5dvh;
+  font-weight: bold;
+}
+.list_body .main .modify__wrapper .modify .mod_info div {
+  font-size: 3dvh;
+  font-weight: bold;
+  width: 45px;
+}
+.list_body .main .modify__wrapper .modify .mod_info div input {
+  background-color: transparent;
+  width: 45px;
+  height: 30px;
+  border: none;
+  border-radius: 0;
+  outline: none;
+}
+.list_body .main .modify__wrapper .modify .mod_info .big_line {
+  width: 100%;
+  background-color: #d2d2d2;
+  height: 0.1rem;
+}
+.list_body .main .modify__wrapper .modify .mod_addiction .skill {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 8px 8px #0c2648;
+  background-color: #091c33;
+  border-radius: 19px;
+  padding: 1rem;
+  margin-top: 0.2rem;
+  width: 96%;
+}
+.list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+.list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info h1, .list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info .indicator {
+  font-size: 2.5dvh;
+  font-weight: bold;
+}
+.list_body .main .modify__wrapper .modify .mod_addiction .skill .second_info {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.list_body .main .modify__wrapper .modify .mod_addiction .skill input {
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 0;
+  outline: none;
+}
+.list_body .main .modify__wrapper #Physique {
+  height: 5rem;
+}
+.list_body .main .modify__wrapper #Dexterity {
+  height: 17rem;
 }
 
 .coin-g {

@@ -3,7 +3,7 @@ footer {
   width: 100%;
   height: 6dvh;
   bottom: 0;
-  background-color: #333333;
+  background-color: rgba(8, 25, 46, 0.9450980392);
   padding: 0.4rem;
 }
 footer .join.btn {

@@ -99,15 +99,76 @@ export class Characters {
 		}
 	}
 
-	public async updateCharacterSecondaryInfo(id: number, armor: number, speed: number): Promise<AxiosResponse> { 
+	public async updateCharacterSecondaryInfo(
+		id: number,
+		armor: number,
+		speed: number
+	): Promise<AxiosResponse> {
 		try {
-         const response: AxiosResponse = await axios.post(
-            `/updateCharacterSecondaryInfo/${id}/${armor}/${speed}`
-         )
+			const response: AxiosResponse = await axios.post(
+				`/updateCharacterSecondaryInfo/${id}/${armor}/${speed}`
+			)
+			return response
+		} catch (error) {
+			console.error(
+				'Ошибка при изменении второстепенной информации персонажа:',
+				error
+			)
+			throw error
+		}
+	}
+
+	public async getCharacterModify(id: number): Promise<AxiosResponse> {
+		try {
+			const response: AxiosResponse = await axios.get(
+				`/getCharacterModify/${id}`
+			)
+			return response
+		} catch (error) {
+			console.error('Ошибка при получении изменений персонажа:', error)
+			throw error
+		}
+	}
+
+	public async updateCharacterModify(
+		id: number,
+		strength: number,
+		dexterity: number,
+		physique: number,
+		intelligence: number,
+		wisdom: number,
+		charisma: number
+	) {
+		try {
+			const response: AxiosResponse = await axios.post(
+				`/updateCharacterModify/${id}/${strength}/${dexterity}/${physique}/${intelligence}/${wisdom}/${charisma}`
+			)
+			return response
+		} catch (error) {
+			console.error('Ошибка при изменении изменений персонажа:', error)
+			throw error
+		}
+	}
+
+	public async getCharacterSkills(id: number): Promise<AxiosResponse> { 
+		try {
+         const response: AxiosResponse = await axios.get(`/getCharacterSkills/${id}`)
          return response
       } catch (error) {
-         console.error('Ошибка при изменении второстепенной информации персонажа:', error)
+         console.error('Ошибка при получении навыков персонажа:', error)
          throw error
       }
+	}
+	public async updateCharacterSkills(
+		id: number,
+		skills: string
+	): Promise<AxiosResponse> {
+		try {
+			const response: AxiosResponse = await axios.post(`/updateCharacterSkills/${id}/${skills}`,)
+			return response
+		} catch (error) {
+			console.error('Ошибка при изменении навыков персонажа:', error)
+			throw error
+		}
 	}
 }

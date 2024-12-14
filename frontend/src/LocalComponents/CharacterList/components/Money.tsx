@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { CalculatorMoney } from './calculator/CalculatorMoney'
+import { useState } from 'react'
+import { CalculatorMoney } from '../calculator/CalculatorMoney'
 import MoneyCalcHeader from './moneyCalcHeader'
 
 interface moneyProps {

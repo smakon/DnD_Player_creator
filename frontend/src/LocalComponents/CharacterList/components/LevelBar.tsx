@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Calculator } from './calculator/Calculator'
+import { Calculator } from '../calculator/Calculator'
 import MiniLevelBar from './MiniLevelBar'
 
 interface levelBarProps {

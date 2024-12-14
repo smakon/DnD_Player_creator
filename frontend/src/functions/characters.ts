@@ -68,3 +68,35 @@ export function updateCharacterSecondaryInfo(id: number, armor: number, speed: n
    const response = characters.updateCharacterSecondaryInfo(id, armor, speed)
    return response
 }
+
+export function getCharacterModify(id: number) { 
+	const characters = new Characters()
+   const response = characters.getCharacterModify(id)
+   return response
+}
+
+export function updateCharacterModify(
+   id: number,
+   strength: number,
+	dexterity: number,
+	physique: number,
+   intelligence: number,
+   wisdom: number,
+	charisma: number
+	) {
+   const characters = new Characters()
+	const response = characters.updateCharacterModify(id, strength, dexterity, physique, intelligence, wisdom, charisma)
+	return response
+}
+
+export function getCharacterSkills(id: number) {
+	const characters = new Characters()
+   const response = characters.getCharacterSkills(id)
+   return response
+}
+
+export function updateCharacterSkills(id: number, skills: string) {
+	const characters = new Characters()
+   const response = characters.updateCharacterSkills(id, skills)
+   return response
+}

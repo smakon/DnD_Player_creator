@@ -1,6 +1,6 @@
 header {
   display: grid;
-  background-color: #333333;
+  background-color: rgba(8, 25, 46, 0.9450980392);
   height: 8dvh;
   width: 100%;
 }

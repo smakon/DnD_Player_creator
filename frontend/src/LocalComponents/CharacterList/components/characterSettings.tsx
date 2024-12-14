@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { updateCharacterSecondaryInfo } from '../../functions/characters'
+import { updateCharacterSecondaryInfo } from '../../../functions/characters'
 
 interface characterSettings {
 	name: string

@@ -161,38 +161,62 @@ app.post(
 
 app.post('/createCharacter/:userId', async (req, res) => {
 	let sql = `INSERT INTO characters (user_id, create_date) VALUES (?, CURRENT_DATE)`
+	let sql2 = `INSERT INTO character_secondary_info () VALUES();`
+	let sql3 = `INSERT INTO character_money () VALUES ();`
+	let sql4 = `INSERT INTO character_modify () VALUES();`
+	let sql5 = `INSERT INTO character_skills () VALUES();`
+	let sql6 = `INSERT INTO character_info (character_id,character_secondary_info_id,character_money_id,character_modify_id, character_skills_id) VALUES(?, ?, ?, ?, ?);`
 	conn.query(sql, req.params.userId, (err, result) => {
 		if (err) {
 			console.log(err)
 		}
 		const lastIdCharacter = result.insertId
-
-		let sql2 = `INSERT INTO character_secondary_info () VALUES();`
 		conn.query(sql2, (err, result2) => {
 			if (err) {
 				console.log(err)
 			} else {
 				const lastIdSecondInfo = result2.insertId
-				let sql3 = `INSERT INTO character_money () VALUES ();`
 				conn.query(sql3, (err, result3) => {
 					if (err) {
 						console.log(err)
 					} else {
 						const lastIdMoney = result3.insertId
-						let sql4 = `
-						INSERT INTO character_info (character_id, character_secondary_info_id, character_money_id) 
-						VALUES(?, ?, ?);`
-						conn.query(
-							sql4,
-							[lastIdCharacter, lastIdSecondInfo, lastIdMoney],
-							(err, result4) => {
-								if (err) {
-									console.log(err)
-								} else {
-									res.send('success')
-								}
+
+						conn.query(sql4, (err, result4) => {
+							if (err) {
+								console.log(err)
+							} else {
+								const lastIdMod = result3.insertId
+
+								conn.query(
+									sql5,
+									(err, result5) => {
+										if (err) {
+											console.log(err)
+										} else {
+											const lastIdSkills = result5.insertId
+											conn.query(
+												sql6,
+												[
+													lastIdCharacter,
+													lastIdSecondInfo,
+													lastIdMoney,
+													lastIdMod,
+													lastIdSkills
+												],
+												(err, result6) => { 
+													if (err) {
+														console.log(err)
+													} else {
+														res.send(true)
+													}
+                                    }
+											)
+                              }
+									}
+								)
 							}
-						)
+						})
 					}
 				})
 			}
@@ -230,27 +254,30 @@ app.get('/getCharacter/:id', async (req, res) => {
 	})
 })
 
-app.post('/updateCharacter/:id/:level/:race/:class/:name/:hp', async (req, res) => {
-	let sql =
-		'UPDATE characters SET level = ?, race = ?, class = ?, name = ?, hp = ? WHERE id = ?'
-	conn.query(
-		sql,
-		[
-			req.params.level,
-			req.params.race,
-			req.params.class,
-			req.params.name,
-			req.params.hp,
-			req.params.id,
-		],
-		(err, result) => {
-			if (err) {
-				console.log(err)
+app.post(
+	'/updateCharacter/:id/:level/:race/:class/:name/:hp',
+	async (req, res) => {
+		let sql =
+			'UPDATE characters SET level = ?, race = ?, class = ?, name = ?, hp = ? WHERE id = ?'
+		conn.query(
+			sql,
+			[
+				req.params.level,
+				req.params.race,
+				req.params.class,
+				req.params.name,
+				req.params.hp,
+				req.params.id,
+			],
+			(err, result) => {
+				if (err) {
+					console.log(err)
+				}
+				res.send(result)
 			}
-			res.send(result)
-		}
-	)
-})
+		)
+	}
+)
 
 app.get('/getCharacterInfo/:character_id', async (req, res) => {
 	let sql = 'SELECT * FROM character_info WHERE character_id = ?'
@@ -258,7 +285,6 @@ app.get('/getCharacterInfo/:character_id', async (req, res) => {
 		if (err) {
 			console.log(err)
 		}
-
 		res.send(result)
 	})
 })
@@ -313,11 +339,46 @@ app.post(
 	}
 )
 
-app.post('/updateCharacterSecondaryInfo/:id/:armor/:speed', async (req, res) => {
-	let sql = `UPDATE character_secondary_info SET armor = ?, speed = ? WHERE id = ?`
+app.post(
+	'/updateCharacterSecondaryInfo/:id/:armor/:speed',
+	async (req, res) => {
+		let sql = `UPDATE character_secondary_info SET armor = ?, speed = ? WHERE id = ?`
+		conn.query(
+			sql,
+			[req.params.armor, req.params.speed, req.params.id],
+			(err, result) => {
+				if (err) {
+					console.log(err)
+				}
+				res.send(result)
+			}
+		)
+	}
+)
+
+app.get('/getCharacterModify/:id', async (req, res) => { 
+	let sql = 'SELECT * FROM character_modify WHERE id = ?'
+   conn.query(sql, [req.params.id], (err, result) => {
+      if (err) {
+         console.log(err)
+      }
+      res.send(result)
+   })
+})
+
+app.post('/updateCharacterModify/:id/:strength/:dexterity/:physique/:intelligence/:wisdom/:charisma',async (req, res) => { 
+	let sql = `UPDATE character_modify SET Strength = ?, Dexterity = ?, Physique = ?, Intelligence = ?, Wisdom = ?, Charisma = ? WHERE id = ?`
 	conn.query(
 		sql,
-		[req.params.armor, req.params.speed, req.params.id],
+		[
+			req.params.strength,
+			req.params.dexterity,
+			req.params.physique,
+			req.params.intelligence,
+			req.params.wisdom,
+			req.params.charisma,
+			req.params.id,
+		],
 		(err, result) => {
 			if (err) {
 				console.log(err)
@@ -327,6 +388,25 @@ app.post('/updateCharacterSecondaryInfo/:id/:armor/:speed', async (req, res) => 
 	)
 })
 
+app.get('/getCharacterSkills/:id', async (req, res) => {
+	let sql = 'SELECT * FROM character_skills WHERE id = ?'
+	conn.query(sql, [req.params.id], (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
+})
+
+app.post('/updateCharacterSkills/:id/:skills', async (req, res) => { 
+	let sql = 'UPDATE character_skills SET skills = ? WHERE id = ?'
+   conn.query(sql, [req.params.skills, req.params.id], (err, result) => {
+      if (err) {
+         console.log(err)
+      }
+      res.send(result)
+   })
+})
 
 const port = 2205
 app.listen(port, (err, result) => {

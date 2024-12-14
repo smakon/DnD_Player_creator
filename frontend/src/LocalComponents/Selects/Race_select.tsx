@@ -26,7 +26,6 @@ const RaceSelect = ({
 	useEffect(() => {
 		races_list()
 			.then(races => {
-				console.log(races.data.results)
 				setRaces(races.data.results)
 			})
 			.catch(err => console.error(err))
