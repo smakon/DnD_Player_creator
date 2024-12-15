@@ -15,9 +15,16 @@ interface ListBodyProps {
 		Wisdom: number
 		id: number
 	}
+	userData: {
+		user_id: number | string
+		theme: number | string
+		vibration: number | string
+		language: string
+		dice_count: number | string
+	}
 }
 
-const ListBody = ({ skills, modify, skill_id, vibration }: ListBodyProps) => {
+const ListBody = ({ skills, modify, skill_id, vibration, userData }: ListBodyProps) => {
 	const [charisma, setCharisma] = useState<number>(0)
 	const [dexterity, setDexterity] = useState<number>(0)
 	const [intelligence, setIntelligence] = useState<number>(0)
@@ -71,7 +78,7 @@ const ListBody = ({ skills, modify, skill_id, vibration }: ListBodyProps) => {
 			case 'Physique':
 				return setPhysique
 			default:
-				return setCharisma // значение по умолчанию
+				return setCharisma
 		}
 	}
 
@@ -86,6 +93,7 @@ const ListBody = ({ skills, modify, skill_id, vibration }: ListBodyProps) => {
 
 						return (
 							<ModifyComponent
+								userData={userData}
 								key={modifyName}
 								modifyName={modifyName}
 								modify={modifyValue}

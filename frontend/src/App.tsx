@@ -139,6 +139,7 @@ function App() {
 					path='character/:id'
 					element={
 						<CharacterList
+							userData={userData}
 							vibration={vibration}
 							userCharacters={userCharacters}
 						/>

@@ -17,8 +17,15 @@ interface CharacterProps {
 		hp: string
 		create_date: string
 	}>
+	userData: {
+		user_id: number | string
+		theme: number | string
+		vibration: number | string
+		language: string
+		dice_count: number | string
+	}
 }
-const CharacterList = ({ userCharacters, vibration }: CharacterProps) => {
+const CharacterList = ({ userCharacters, vibration, userData }: CharacterProps) => {
 	let { id } = useParams()
 	const ID = Number(id)
 	const [skills, setSkills] = useState('')
@@ -61,6 +68,7 @@ const CharacterList = ({ userCharacters, vibration }: CharacterProps) => {
 				characterInfo={characterInfo}
 				setCharacterInfo={setCharacterInfo} />
 			<ListBody
+				userData={userData}
 				vibration={vibration}
 				skills={skills}
 				modify={modify}

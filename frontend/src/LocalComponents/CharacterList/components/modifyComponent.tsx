@@ -3,15 +3,24 @@ import SkillComponent from './skillComponent'
 import { createNotify } from '../../../functions/notify'
 import { d20 } from '../dice'
 import { updateCharacterSkills } from '../../../functions/characters'
+import { updateUser } from '../../../functions/user'
 
 interface modifyComponentProps {
 	modifyName: string
 	modify: number
 	skills: string
-   skill_id: number
-   vibration: number
+	skill_id: number
+	vibration: number
 
 	setter: (value: number) => void
+
+	userData: {
+		user_id: number | string
+		theme: number | string
+		vibration: number | string
+		language: string
+		dice_count: number | string
+	}
 }
 
 export const ModifyComponent = ({
@@ -20,7 +29,8 @@ export const ModifyComponent = ({
    setter,
    skills,
    skill_id,
-   vibration
+   vibration,
+   userData
 }: modifyComponentProps) => {
    const [athleticsState, setAthleticsState] = useState(1)
    const [athleticsBonus, setAthleticsBonus] = useState(0)
@@ -328,6 +338,7 @@ export const ModifyComponent = ({
             const dice20 = d20()
             const mod = Math.floor((modify - 10) / 2)
             navigator.vibrate(vibration)
+            updateUser(Number(userData.dice_count) + 1, userData.theme, vibration, userData.language)
             createNotify({
 							appearance: 'success',
 							message: `${modifyName}: ${dice20} + ${mod} = ${
@@ -348,6 +359,7 @@ export const ModifyComponent = ({
 
                   return (
                      <SkillComponent
+                        userData={userData}
                         skillName={skillName}
                         state={state}
                         bonus={bonus}

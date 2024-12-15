@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 import GetOutDesktop from '../Buttons/getOutButtonDesktop/getOutDesktop'
 import GetOutMobile from '../Buttons/getOutButtonMobile/getOutMobile'
 
-const device = require('current-device').default
 
 export interface ProfileProps {
 	userAccount: {
