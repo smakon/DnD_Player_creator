@@ -20,7 +20,8 @@ interface modifyComponentProps {
 		vibration: number | string
 		language: string
 		dice_count: number | string
-	}
+   }
+   exp: number
 }
 
 export const ModifyComponent = ({
@@ -30,7 +31,8 @@ export const ModifyComponent = ({
    skills,
    skill_id,
    vibration,
-   userData
+   userData,
+   exp
 }: modifyComponentProps) => {
    const [athleticsState, setAthleticsState] = useState(1)
    const [athleticsBonus, setAthleticsBonus] = useState(0)
@@ -359,6 +361,7 @@ export const ModifyComponent = ({
 
                   return (
                      <SkillComponent
+                        exp={exp}
                         userData={userData}
                         skillName={skillName}
                         state={state}

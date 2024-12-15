@@ -22,9 +22,10 @@ interface ListBodyProps {
 		language: string
 		dice_count: number | string
 	}
+	exp: number
 }
 
-const ListBody = ({ skills, modify, skill_id, vibration, userData }: ListBodyProps) => {
+const ListBody = ({ skills, modify, skill_id, vibration, userData, exp }: ListBodyProps) => {
 	const [charisma, setCharisma] = useState<number>(0)
 	const [dexterity, setDexterity] = useState<number>(0)
 	const [intelligence, setIntelligence] = useState<number>(0)
@@ -93,6 +94,7 @@ const ListBody = ({ skills, modify, skill_id, vibration, userData }: ListBodyPro
 
 						return (
 							<ModifyComponent
+								exp={exp}
 								userData={userData}
 								key={modifyName}
 								modifyName={modifyName}

@@ -20,6 +20,7 @@ interface SkillComponentProps {
 		language: string
 		dice_count: number | string
 	}
+	exp: number
 }
 const SkillComponent = ({
 	skillName,
@@ -29,14 +30,42 @@ const SkillComponent = ({
 	setState,
 	mod,
 	vibration,
-	userData
+	userData,
+	exp
 }: SkillComponentProps) => {
 	const handleChange = (value: number, setter: (value: number) => void) => {
 		setter(value)
 	}
+	const levels: Record<string, number> = {
+		'1': 0,
+		'2': 300,
+		'3': 900,
+		'4': 2700,
+		'5': 6500,
+		'6': 14000,
+		'7': 23000,
+		'8': 34000,
+		'9': 48000,
+		'10': 64000,
+		'11': 85000,
+		'12': 100000,
+		'13': 120000,
+		'14': 140000,
+		'15': 165000,
+		'16': 195000,
+		'17': 225000,
+		'18': 265000,
+		'19': 305000,
+		'20': 355000,
+	}
+	
+	const currentLevel = Object.keys(levels).reduce((acc, level) => {
+		return exp >= levels[level] ? level : acc
+	}, '1')
 
 	const indicate = () => {
-		return state * mod + bonus
+		const bonus2 = Math.floor((Number(currentLevel) - 1) / 4) + 2
+		return state * bonus2 + mod + bonus
    }
    
 	return (

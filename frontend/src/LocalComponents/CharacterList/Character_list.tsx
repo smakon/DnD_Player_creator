@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import '../../Scss/CharacterList/characterList.css'
 import ListHead from './ListHead'
@@ -47,6 +47,30 @@ const CharacterList = ({ userCharacters, vibration, userData }: CharacterProps) 
 		character_skills_id: 0,
 	
 	})
+	const character = userCharacters.find(c => c.id === ID)
+	const navigate = useNavigate()
+	const [race, setRace] = useState('')
+	const [getClass, setClass] = useState('')
+	const [exp, setExp] = useState(0)
+	const [name, setName] = useState('')
+	const [maxHp, setMaxHp] = useState(0)
+	const [currentHp, setCurrentHp] = useState(0)
+
+	useEffect(() => {
+		if (!character && userCharacters.length > 0 && characterInfo.id === 0) {
+			navigate('/characterError')
+		} else {
+			setClass(String(character?.class))
+			setName(String(character?.name))
+			setRace(String(character?.race))
+			setExp(Number(character?.level))
+			if (character?.hp) {
+				const [current, max] = character.hp.split(';').map(Number)
+				setCurrentHp(current)
+				setMaxHp(max)
+			}
+		}
+	}, [character, userCharacters])
 	useEffect(() => {
 		if (characterInfo.character_skills_id !== 0) {
 			getCharacterSkills(characterInfo.character_skills_id)
@@ -63,11 +87,24 @@ const CharacterList = ({ userCharacters, vibration, userData }: CharacterProps) 
 	return (
 		<div className="characterList">
 			<ListHead
+				setClass={setClass}
+				setRace={setRace}
+				setCurrentHp={setCurrentHp}
+				setMaxHp={setMaxHp}
+				setExp={setExp}
+				setName={setName}
+				getClass={getClass}
+				race={race}
+				exp={exp}
+				name={name}
+				currentHp={currentHp}
+				maxHp={maxHp}
 				ID={ID}
 				userCharacters={userCharacters}
 				characterInfo={characterInfo}
 				setCharacterInfo={setCharacterInfo} />
 			<ListBody
+				exp={exp}
 				userData={userData}
 				vibration={vibration}
 				skills={skills}
