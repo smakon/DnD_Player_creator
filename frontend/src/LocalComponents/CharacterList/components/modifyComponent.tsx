@@ -9,6 +9,7 @@ interface modifyComponentProps {
 	modify: number
 	skills: string
    skill_id: number
+   vibration: number
 
 	setter: (value: number) => void
 }
@@ -18,7 +19,8 @@ export const ModifyComponent = ({
    modify,
    setter,
    skills,
-   skill_id
+   skill_id,
+   vibration
 }: modifyComponentProps) => {
    const [athleticsState, setAthleticsState] = useState(1)
    const [athleticsBonus, setAthleticsBonus] = useState(0)
@@ -325,6 +327,7 @@ export const ModifyComponent = ({
          <div className='examination_wrapper' onClick={() => {
             const dice20 = d20()
             const mod = Math.floor((modify - 10) / 2)
+            navigator.vibrate(vibration)
             createNotify({
 							appearance: 'success',
 							message: `${modifyName}: ${dice20} + ${mod} = ${
@@ -423,6 +426,7 @@ export const ModifyComponent = ({
                                                                               : () => { }
                         }
                         mod={Math.floor((modify - 10) / 2)}
+                        vibration={vibration}
                      />
                   )
                }

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { ModifyComponent } from './components/modifyComponent'
 import { updateCharacterModify } from '../../functions/characters'
-import { useNavigate } from 'react-router-dom'
 
 interface ListBodyProps {
 	skill_id: number
-	skills: string // Убедитесь, что это соответствует фактической структуре
+	vibration: number
+	skills: string
 	modify: {
 		Charisma: number
 		Dexterity: number
@@ -17,7 +17,7 @@ interface ListBodyProps {
 	}
 }
 
-const ListBody = ({ skills, modify, skill_id }: ListBodyProps) => {
+const ListBody = ({ skills, modify, skill_id, vibration }: ListBodyProps) => {
 	const [charisma, setCharisma] = useState<number>(0)
 	const [dexterity, setDexterity] = useState<number>(0)
 	const [intelligence, setIntelligence] = useState<number>(0)
@@ -86,12 +86,13 @@ const ListBody = ({ skills, modify, skill_id }: ListBodyProps) => {
 
 						return (
 							<ModifyComponent
-								key={modifyName} // Добавляем уникальный ключ
+								key={modifyName}
 								modifyName={modifyName}
 								modify={modifyValue}
 								setter={setter}
 								skills={skills}
 								skill_id={skill_id}
+								vibration={vibration}
 							/>
 						)
 					})}

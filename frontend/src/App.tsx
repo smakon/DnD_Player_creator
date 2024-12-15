@@ -1,4 +1,4 @@
-import Home from './LocalComponents/Home/Home'
+import Characters from './LocalComponents/Characters'
 import Registration from './LocalComponents/Registration/Registration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './LocalComponents/Header'
@@ -16,6 +16,7 @@ import i18n from './i18n'
 import ResetPassword from './LocalComponents/ResetPass/ResetPassword'
 import CharacterList from './LocalComponents/CharacterList/Character_list'
 import CharacterError from './LocalComponents/Error/CharacterError'
+import { Home } from './LocalComponents/Home/Home'
 
 const device = require('current-device').default
 
@@ -112,16 +113,23 @@ function App() {
 			<Header
 				userAccount={userAccount}
 				setUserCharacters={setUserCharacters}
+				t={t}
 			/>
 			<Routes>
 				<Route
-					path='/'
+					path='characters'
 					element={
-						<Home
+						<Characters
 							currentDevice={currentDevice}
 							userCharacters={userCharacters}
 							setUserCharacters={setUserCharacters}
 						/>
+					}
+				/>
+				<Route
+					path='/'
+					element={
+						<Home />
 					}
 				/>
 				<Route path='registration' element={<Registration />} />
@@ -129,7 +137,12 @@ function App() {
 				<Route path='forgotPassword' element={<ResetPassword />} />
 				<Route
 					path='character/:id'
-					element={<CharacterList userCharacters={userCharacters} />}
+					element={
+						<CharacterList
+							vibration={vibration}
+							userCharacters={userCharacters}
+						/>
+					}
 				/>
 				<Route
 					path='profile'

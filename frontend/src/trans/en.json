@@ -1,7 +1,16 @@
 {
 	"Привет": "Hello",
 	"Персонажей": "Characters",
-	"Заклинаний в книге": "Spells in book",
-	"Брошено костей": "Dice rolled",
-	"Язык": "Language"
+	"Заклинаний в книге": "Spells in the book",
+	"Брошено костей": "Dice thrown",
+	"Язык": "Language",
+	"Статистика аккаунта": "Account statistics",
+	"Настройки": "Settings",
+	"Вибрация": "Vibration",
+	"Имя": "Name",
+	"Раса": "Race",
+	"Класс": "Class",
+	"Уровень": "Level",
+	"Дата создания": "Creation date",
+	"У вас нету персонажей": "You have no characters"
 }

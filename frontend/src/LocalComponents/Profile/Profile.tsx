@@ -73,8 +73,6 @@ const Profile = ({
 		updateUser(userData.dice_count, userData.theme, number, language)
 	}
 	
-
-	
 	return (
 		<div className='profile'>
 			<h1 className=' text-4xl font-bold flex justify-center mt-3'>
@@ -116,7 +114,7 @@ const Profile = ({
 								}}
 							/>
 						</div>
-						{currentDevice !== device.desktop() ? (
+						{currentDevice !== 'mobile' ? (
 							''
 						) : (
 							<div className='vibration_wrapper flex gap-4 items-center'>

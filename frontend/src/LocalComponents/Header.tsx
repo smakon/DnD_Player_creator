@@ -111,7 +111,10 @@ const Header = ({ userAccount, setUserCharacters, t }: HeaderProps) => {
 	return (
 		<header>
 			<Flex vertical={false} justify='space-around' align='center'>
-				<Link to='/' style={{ color: '#f9f9f9' }}>
+				<Link to={'/'} className='home_about_as'>
+					<img src={`${process.env.PUBLIC_URL}/icon.png`} />
+				</Link>
+				<Link to='/characters' style={{ color: '#f9f9f9' }}>
 					{t('Персонажи')}
 				</Link>
 				<div className='search__wrapper' onClick={() => focusOn('name_input')}>

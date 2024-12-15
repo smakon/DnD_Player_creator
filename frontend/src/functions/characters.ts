@@ -1,4 +1,5 @@
 import { Characters } from '../Class/Characters'
+import { getCookie } from './cookies'
 
 export function allCharacters() {
 	const characters = new Characters()
@@ -103,12 +104,15 @@ export function updateCharacterSkills(id: number, skills: string) {
 
 export function getCharacterOfName(name: string) { 
 	const characters = new Characters()
-   const response = characters.getCharacterOfName(name)
+   const response = characters.getCharacterOfName(
+			name,
+			Number(getCookie('id'))
+		)
    return response
 }
 
 export function filter(c_class: string, race: string) { 
 	const characters = new Characters()
-   const response = characters.filter(c_class, race)
+   const response = characters.filter(c_class, race, Number(getCookie('id')))
    return response
 }

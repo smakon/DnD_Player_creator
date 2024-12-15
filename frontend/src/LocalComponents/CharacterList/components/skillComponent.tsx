@@ -7,6 +7,7 @@ interface SkillComponentProps {
 	bonus: number
 	state: number
 	mod: number
+	vibration: number
 
 	setBonus: (value: number) => void
 	setState: (value: number) => void
@@ -18,6 +19,7 @@ const SkillComponent = ({
 	setBonus,
 	setState,
 	mod,
+	vibration
 }: SkillComponentProps) => {
 	const handleChange = (value: number, setter: (value: number) => void) => {
 		setter(value)
@@ -35,6 +37,7 @@ const SkillComponent = ({
 					className='indicator'
 					onClick={() => {
 						const dice20 = d20()
+						navigator.vibrate(vibration)
 						createNotify({
 							appearance: 'success',
 							message: `${skillName}: ${dice20} + ${indicate()} = ${

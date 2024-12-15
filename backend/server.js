@@ -408,9 +408,9 @@ app.post('/updateCharacterSkills/:id/:skills', async (req, res) => {
    })
 })
 
-app.get('/getCharactersOfName/:string', async (req, res) => { 
-	let sql = `SELECT * FROM characters WHERE name LIKE '%${req.params.string}%'`
-   conn.query(sql, (err, result) => {
+app.get('/getCharactersOfName/:string/:user_id', async (req, res) => { 
+	let sql = `SELECT * FROM characters WHERE name LIKE '%${req.params.string}%' AND user_id = ? order by id DESC`
+   conn.query(sql, [req.params.user_id],(err, result) => {
       if (err) {
          console.log(err)
       }
@@ -418,30 +418,30 @@ app.get('/getCharactersOfName/:string', async (req, res) => {
    })
 })
 
-app.get('/filter/:race/:class', async (req, res) => { 
+app.get('/filter/:race/:class/:user_id', async (req, res) => { 
 	if (req.params.class !== 'none' && req.params.race !== 'none') {
-		let sql = `SELECT * FROM characters WHERE race = ? AND class = ?`
-		conn.query(sql, [req.params.race, req.params.class], (err, result) => { 
+		let sql = `SELECT * FROM characters WHERE race = ? AND class = ? AND user_id = ? order by id DESC`
+		conn.query(sql, [req.params.race, req.params.class, req.params.user_id], (err, result) => { 
 			if (err) {
             console.log(err)
          }
          res.send(result)
 		})
 	} else if (req.params.race == 'none') {
-		let sql = `SELECT * FROM characters WHERE class = ?`
-		conn.query(sql, [req.params.class], (err, result) => { 
+		let sql = `SELECT * FROM characters WHERE class = ? AND user_id = ? order by id DESC`
+		conn.query(sql, [req.params.class, req.params.user_id], (err, result) => {
 			if (err) {
-            console.log(err)
-         }
-         res.send(result)
+				console.log(err)
+			}
+			res.send(result)
 		})
 	} else if (req.params.class == 'none') {
-		let sql = `SELECT * FROM characters WHERE race = ?`
-		conn.query(sql, [req.params.race], (err, result) => { 
+		let sql = `SELECT * FROM characters WHERE race = ? AND user_id = ? order by id DESC`
+		conn.query(sql, [req.params.race, req.params.user_id], (err, result) => {
 			if (err) {
-            console.log(err)
-         }
-         res.send(result)
+				console.log(err)
+			}
+			res.send(result)
 		})
 	} else {
 		res.send(false)

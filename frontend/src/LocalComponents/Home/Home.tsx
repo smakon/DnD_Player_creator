@@ -1,66 +1,44 @@
-import { Footer } from "../Footer"
+import { Link } from 'react-router-dom'
 import '../../Scss/Home/Home.css'
-import { useNavigate } from "react-router-dom"
-import { useCallback, useEffect } from "react"
-import { getUserCharacters } from "../../functions/user"
-export interface HomeProps {
-	currentDevice: string
-	setUserCharacters: (
-		character: {
-			id: number
-			user_id: number
-			name: string
-			class: string
-			race: string
-			level: number
-			hp: string
-			create_date: string
-		}[]
-	) => void
-	userCharacters: Array<{
-		id: number
-		user_id: number
-		name: string
-		class: string
-		race: string
-		level: number
-		hp: string
-		create_date: string
-	}>
-}
-function Home({ currentDevice, userCharacters, setUserCharacters }: HomeProps) {
-	const navigate = useNavigate()
-	
-	const fetchUserCharacters = async () => {
-		try {
-			const res = await getUserCharacters()
-			setUserCharacters(res.data)
-		} catch (error) {
-			console.error(error)
-		}
-	}
-	useEffect(() => {
-		fetchUserCharacters()
-	},[])
+
+export const Home = ()=> {
 	return (
 		<>
-			<div className='characters'>
-				{userCharacters.map(character => (
-					<div key={character.id} className='character card' onClick={() => navigate(`/character/${character.id}`)}>
-						<img
-							src={`${process.env.PUBLIC_URL}/races/${character.race}.png`}
-							alt='race'
-						/>
-						<h2>{character.name}</h2>
-						<p>Race: {character.race}</p>
-						<p>Class: {character.class}</p>
-						<p>Level: {character.level}</p>
-					</div>
-				))}
+			<div className='home'>
+				<p>
+					Этот сайт создан для Dangeon and Dragon комьюнити, которые устали
+					заполнять "лист игрока" руками(так долго), вечно следить за здоровьем
+					и достатком.
+					<br />
+					<br />
+					На нашем сайте вы можете создавать персонажей в неограниченном
+					количестве, и заполнять их полу автоматически
+				</p>
+				<p>
+					Устал следить за здоровьем? Сайт сам подскажет, что здоровье на исходе
+					Много денег? Устал считать, и переводить из Серебряков в золота? Сайт
+					сам переведёт и покажет, да и поможет посчитать прибавку
+				</p>
+				<p>
+					Вечно забываешь когда повысить уровень? Сайт сам уследит и повышает
+					его если ты наберёшь достаточное количество опыта Игра прошла... Лист
+					потерялся..., а сайт всегда на месте, нас даже поиск персонажей есть и
+					по имени, и по расе и классу
+				</p>
+				<p>DnD Character Creator, больше чем бумага!!</p>
+				<ol>
+					В разработке:
+					<li>Тёмная/светлая тема</li>
+					<li>Создание игровых комнат</li>
+					<li>Больше вариантов заполнения листа</li>
+					<li>Сохранение чужих листов</li>
+					<li>Библиотека шаблонов</li>
+					<li>Адаптация под устройства</li>
+				</ol>
+				<button>
+					<Link to={'/characters'}>Начать</Link>
+				</button>
 			</div>
-			<Footer currentDevice={currentDevice} />
 		</>
 	)
 }
-
-export default Home

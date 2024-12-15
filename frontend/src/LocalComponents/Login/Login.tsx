@@ -109,9 +109,9 @@ const Login = () => {
 								height: '4dvh',
 							}}
 						/>
-						<Link to={'/forgotPassword'} className='__link'>
+						{/* <Link to={'/forgotPassword'} className='__link'>
 							Забыли пароль?
-						</Link>
+						</Link> */}
 						<Link to={'/registration'} className='__link'>
 							Зарегистрироваться
 						</Link>

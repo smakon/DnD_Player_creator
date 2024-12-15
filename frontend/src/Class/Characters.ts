@@ -172,10 +172,10 @@ export class Characters {
 		}
 	}
 
-	public async getCharacterOfName(name: string): Promise<AxiosResponse> { 
+	public async getCharacterOfName(name: string, id: number): Promise<AxiosResponse> { 
 		try {
          const response: AxiosResponse = await axios.get(
-						`/getCharactersOfName/${name}`
+						`/getCharactersOfName/${name}/${id}`
 					)
          return response
       } catch (error) {
@@ -184,9 +184,9 @@ export class Characters {
       }
 	}
 
-	public async filter(c_class: string, race: string): Promise<AxiosResponse> {
+	public async filter(c_class: string, race: string, id: number): Promise<AxiosResponse> {
 		try {
-         const response: AxiosResponse = await axios.get(`/filter/${race}/${c_class}`)
+         const response: AxiosResponse = await axios.get(`/filter/${race}/${c_class}/${id}`)
          return response
       } catch (error) {
          console.error('Ошибка при фильтрации персонажей:', error)
