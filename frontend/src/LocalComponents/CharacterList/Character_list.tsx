@@ -6,7 +6,6 @@ import { getCharacterModify, getCharacterSkills } from '../../functions/characte
 import ListBody from './ListBody'
 
 interface CharacterProps {
-	vibration: number
 	userCharacters: Array<{
 		id: number
 		user_id: number
@@ -25,7 +24,7 @@ interface CharacterProps {
 		dice_count: number | string
 	}
 }
-const CharacterList = ({ userCharacters, vibration, userData }: CharacterProps) => {
+const CharacterList = ({ userCharacters, userData }: CharacterProps) => {
 	let { id } = useParams()
 	const ID = Number(id)
 	const [skills, setSkills] = useState('')
@@ -106,7 +105,6 @@ const CharacterList = ({ userCharacters, vibration, userData }: CharacterProps) 
 			<ListBody
 				exp={exp}
 				userData={userData}
-				vibration={vibration}
 				skills={skills}
 				modify={modify}
 				skill_id={characterInfo.character_skills_id}

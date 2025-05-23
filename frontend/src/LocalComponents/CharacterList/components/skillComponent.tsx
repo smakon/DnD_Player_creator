@@ -8,7 +8,6 @@ interface SkillComponentProps {
 	bonus: number
 	state: number
 	mod: number
-	vibration: number
 
 	setBonus: (value: number) => void
 	setState: (value: number) => void
@@ -29,7 +28,6 @@ const SkillComponent = ({
 	setBonus,
 	setState,
 	mod,
-	vibration,
 	userData,
 	exp
 }: SkillComponentProps) => {
@@ -76,11 +74,11 @@ const SkillComponent = ({
 					className='indicator'
 					onClick={() => {
 						const dice20 = d20()
-						navigator.vibrate(vibration)
+						navigator.vibrate(Number(userData.vibration))
 						updateUser(
 							Number(userData.dice_count) + 1,
 							userData.theme,
-							vibration,
+							Number(userData.vibration),
 							userData.language
 						)
 						createNotify({

@@ -4,7 +4,6 @@ import { updateCharacterModify } from '../../functions/characters'
 
 interface ListBodyProps {
 	skill_id: number
-	vibration: number
 	skills: string
 	modify: {
 		Charisma: number
@@ -25,7 +24,7 @@ interface ListBodyProps {
 	exp: number
 }
 
-const ListBody = ({ skills, modify, skill_id, vibration, userData, exp }: ListBodyProps) => {
+const ListBody = ({ skills, modify, skill_id, userData, exp }: ListBodyProps) => {
 	const [charisma, setCharisma] = useState<number>(0)
 	const [dexterity, setDexterity] = useState<number>(0)
 	const [intelligence, setIntelligence] = useState<number>(0)
@@ -102,7 +101,6 @@ const ListBody = ({ skills, modify, skill_id, vibration, userData, exp }: ListBo
 								setter={setter}
 								skills={skills}
 								skill_id={skill_id}
-								vibration={vibration}
 							/>
 						)
 					})}

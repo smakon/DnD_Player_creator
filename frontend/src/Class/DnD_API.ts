@@ -38,15 +38,15 @@ export class DnD_INFO {
 		}
 	}
 
-	public async getRaces(): Promise<AxiosResponse> { 
+	public async getRaces(): Promise<AxiosResponse> {
 		try {
-         const response: AxiosResponse = await axios.get(
-            `https://www.dnd5eapi.co/api/races`
-         )
-         return response
-      } catch (error) {
-         console.error('Ошибка при получении расc:', error)
-         throw error
-      }
+			const response: AxiosResponse = await axios.get(
+				`https://www.dnd5eapi.co/api/races`
+			)
+			return response
+		} catch (error) {
+			console.error('Ошибка при получении расc:', error)
+			throw error
+		}
 	}
 }
