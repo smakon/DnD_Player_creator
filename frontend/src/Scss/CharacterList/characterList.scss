@@ -2,7 +2,7 @@
    --lvlBarColor: rgb(95, 43, 138);
    --headBg: #ffffff;
 }
-.characterList{
+.characterList {
    background-color: #08192e;
    width: 100%;
    height: 136dvh;
@@ -17,29 +17,29 @@
    padding: 0 15rem;
    padding-top: 1rem;
 
-   p{
+   p {
       font-size: larger;
       font-weight: bold;
       color: #eaeaea;
    }
-   .character_settings{
+   .character_settings {
       display: flex;
       flex-direction: column;
-      h1{
+      h1 {
          font-size: 1.6em;
          font-weight: bold;
          margin-bottom: 1rem;
          text-align: center;
       }
 
-      input{
+      input {
          background-color: transparent;
          border-bottom: 2px solid #1c579f;
          border-radius: 0px;
          padding-left: 0;
       }
 
-      p{
+      p {
          margin-left: 0 !important;
          font-size: 1.2em;
          font-weight: 100;
@@ -49,102 +49,97 @@
          color: #b0b0b0;
       }
    }
-   .main_information{
+   .main_information {
       display: flex;
       gap: 5rem;
       color: #eaeaea;
-      img{
+      img {
          width: 200px;
          height: 200px;
       }
-      .main_information_body{
+      .main_information_body {
          display: flex;
          flex-direction: column;
          justify-content: center;
          gap: 1rem;
-         h1{
+         h1 {
             font-size: 2.5dvh;
             white-space: nowrap;
             font-weight: bold;
             font-style: italic;
          }
-         p{
+         p {
             font-size: 1.7dvh;
             white-space: nowrap;
             color: #eaeaea;
          }
-         
-         .class_race_wrapper{
+
+         .class_race_wrapper {
             display: flex;
             align-items: center;
             gap: 1rem;
-            
-            select{ 
+
+            select {
                padding-right: 5px;
-               -webkit-appearance: none;
-               -moz-appearance: none;
                background-color: transparent;
 
-               &::-ms-expand {
-                  display: none;
-               }
-
-               option{
+               option {
                   background-color: #08192e;
                }
             }
-            .class__wrapper{
-               select{
+            .class__wrapper {
+               select {
                   text-align: right;
                }
             }
-            .race__wrapper{
-               select{
+            .race__wrapper {
+               select {
                   text-align: left;
                }
             }
          }
       }
-   }  
-   .secondary_information{
+   }
+   .secondary_information {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 3rem;
-      
-      .hp_wrapper{
+
+      .hp_wrapper {
          display: flex;
          gap: 1rem;
          border: 3px solid var(--hpColor);
          padding: 0.2rem;
          align-items: center;
-         svg{
+         svg {
             font-size: 1.6rem;
             color: var(--hpColor);
          }
-         
-         .hp_inf{
+
+         .hp_inf {
             display: flex;
             gap: 0.3rem;
-            p{
+            p {
                font-size: 1.5em;
-               color: var(--hpColor)
+               color: var(--hpColor);
             }
          }
       }
 
-      .bonus_wrapper, .speed_wrapper{
+      .bonus_wrapper,
+      .speed_wrapper {
          display: flex;
          flex-direction: column;
          justify-content: center;
          align-items: center;
-         
-         span{
+
+         span {
             text-transform: uppercase;
             font-size: 1.5dvh;
             color: #eaeaea;
          }
-         p{
+         p {
             font-size: 2.5dvh;
             font-weight: bold;
             white-space: nowrap;
@@ -152,8 +147,8 @@
          }
       }
 
-      .bonus_wrapper{
-         p{
+      .bonus_wrapper {
+         p {
             margin-right: 15px;
             color: #eaeaea;
          }
@@ -245,7 +240,7 @@
 
       font-size: larger;
 
-      ._second{
+      ._second {
          display: inline-block;
          text-align: center;
 
@@ -256,7 +251,7 @@
 
          font-size: larger;
          color: #eaeaea;
-         input{
+         input {
             width: 15px;
          }
       }
@@ -266,7 +261,7 @@
       display: flex;
       gap: 1rem;
       align-items: center;
-      .money_count{
+      .money_count {
          color: #eaeaea;
          font-size: 2.5dvh;
          font-weight: bold;
@@ -295,7 +290,7 @@
       flex-direction: column;
       gap: 1rem;
 
-      p{
+      p {
          span {
             color: gold;
          }
@@ -315,30 +310,28 @@
          .left,
          .right {
             display: flex;
-            gap:1rem;
+            gap: 1rem;
          }
       }
    }
-
-   
 }
 
-.list_body{
-   .main{
-      .modify__wrapper{
+.list_body {
+   .main {
+      .modify__wrapper {
          padding: 2rem 15rem;
          width: 100%;
          height: 20%;
          display: flex;
          flex-direction: row;
-         align-items:normal;
+         align-items: normal;
          flex-wrap: wrap;
          gap: 1rem;
-         .modify{
+         .modify {
             box-shadow: 0 8px 8px #071629;
             background-color: #0c2646;
             border-radius: 19px;
-            color:#eaeaea;
+            color: #eaeaea;
             width: 30%;
             padding: 0.3rem;
             padding-left: 1rem;
@@ -346,25 +339,29 @@
 
             display: flex;
             flex-direction: column;
-            
-            transition: background-color 0.3s, color 0.3s;
-            .mod_info{
+
+            transition:
+               background-color 0.3s,
+               color 0.3s;
+            .mod_info {
                width: 100%;
                display: flex;
                align-items: center;
                justify-content: center;
-               transition: background-color 0.3s, color 0.3s;
+               transition:
+                  background-color 0.3s,
+                  color 0.3s;
                cursor: pointer;
                gap: 0.2rem;
-               .modify_name{
+               .modify_name {
                   font-size: 2.5dvh;
                   font-weight: bold;
                }
-               div{
+               div {
                   font-size: 3dvh;
                   font-weight: bold;
                   width: 45px;
-                  input{
+                  input {
                      background-color: transparent;
                      width: 45px;
                      height: 30px;
@@ -374,15 +371,14 @@
                      outline: none;
                   }
                }
-               .big_line{
+               .big_line {
                   width: 100%;
                   background-color: #d2d2d2;
                   height: 0.1rem;
                }
             }
-            .mod_addiction{
-               
-               .skill{
+            .mod_addiction {
+               .skill {
                   display: flex;
                   justify-content: center;
                   flex-direction: column;
@@ -392,24 +388,25 @@
                   padding: 1rem;
                   margin-top: 0.2rem;
                   width: 96%;
-                  .skill_info{
-                     h1, .indicator{
+                  .skill_info {
+                     h1,
+                     .indicator {
                         font-size: 2.5dvh;
                         font-weight: bold;
                      }
 
                      display: flex;
-                     align-items:flex-start;
+                     align-items: flex-start;
                      justify-content: space-between;
                      width: 100%;
                      cursor: pointer;
                   }
-                  .second_info{
+                  .second_info {
                      cursor: pointer;
                      display: flex;
                      justify-content: space-between;
                   }
-                  input{
+                  input {
                      background-color: transparent;
                      width: 30px;
                      height: 30px;
@@ -421,19 +418,18 @@
                }
             }
          }
-         #Physique{
+         #Physique {
             height: 5rem;
          }
-         #Dexterity{
+         #Dexterity {
             height: 17rem;
          }
       }
    }
 }
 
-
 .coin-g {
-   p{
+   p {
       color: gold !important;
    }
    z-index: 10;
@@ -455,7 +451,7 @@
 }
 
 .coin-s {
-   p{
+   p {
       color: silver !important;
    }
    z-index: 10;
@@ -477,7 +473,7 @@
 }
 
 .coin-c {
-   p{
+   p {
       color: #9e6836 !important;
    }
    z-index: 10;
@@ -499,7 +495,7 @@
 }
 
 .coin-p {
-   p{
+   p {
       color: #c4c3c4 !important;
    }
    z-index: 10;
@@ -521,7 +517,7 @@
 }
 
 .coin-e {
-   p{
+   p {
       color: #9ebcff !important;
    }
    z-index: 10;
@@ -542,24 +538,22 @@
       color 0.3s;
 }
 
-.healthCalcHeader{
+.healthCalcHeader {
    display: flex;
    flex-direction: row;
    gap: 1rem;
    justify-content: flex-end;
    padding-right: 1rem;
    padding-bottom: 1rem;
-   svg{
+   svg {
       font-size: large;
    }
-   .health{
+   .health {
       display: flex;
       flex-direction: row;
       gap: 0.3rem;
-      p{
+      p {
          font-size: 2rem;
       }
    }
-
-
 }

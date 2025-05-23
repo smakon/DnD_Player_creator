@@ -5,25 +5,15 @@ const mysql = require('mysql')
 const cors = require('cors')
 const bcrypt = require('bcryptjs')
 
-// Cloud DB
-const conn = mysql.createConnection({
-	host: 'jufirjigoop.beget.app',
-	user: 'dnd_player_builder',
-	password: '12345678Sas)',
-	database: 'dnd_player_builder',
-})
-// setInterval(() => {
-// 	conn.query('select 1')
-// 	console.log('select')
-// }, 2900)
+new Date().toISOString()
 
-// DB
-// const conn = mysql.createConnection({
-// 	host: 'ssamikm6.beget.tech',
-// 	user: 'ssamikm6_dnd',
-// 	password: '12345678Sas)',
-// 	database: 'ssamikm6_dnd',
-// })
+// local db
+const conn = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'root',
+	database: 'dnd_player_creator',
+})
 
 conn.connect(err => {
 	if (err) {
@@ -34,8 +24,6 @@ conn.connect(err => {
 		console.log('Connected to MySQL')
 	}
 })
-
-conn.wa
 
 app.use(cors())
 
@@ -188,33 +176,30 @@ app.post('/createCharacter/:userId', async (req, res) => {
 							} else {
 								const lastIdMod = result3.insertId
 
-								conn.query(
-									sql5,
-									(err, result5) => {
-										if (err) {
-											console.log(err)
-										} else {
-											const lastIdSkills = result5.insertId
-											conn.query(
-												sql6,
-												[
-													lastIdCharacter,
-													lastIdSecondInfo,
-													lastIdMoney,
-													lastIdMod,
-													lastIdSkills
-												],
-												(err, result6) => { 
-													if (err) {
-														console.log(err)
-													} else {
-														res.send(true)
-													}
-                                    }
-											)
-                              }
+								conn.query(sql5, (err, result5) => {
+									if (err) {
+										console.log(err)
+									} else {
+										const lastIdSkills = result5.insertId
+										conn.query(
+											sql6,
+											[
+												lastIdCharacter,
+												lastIdSecondInfo,
+												lastIdMoney,
+												lastIdMod,
+												lastIdSkills,
+											],
+											(err, result6) => {
+												if (err) {
+													console.log(err)
+												} else {
+													res.send(true)
+												}
+											}
+										)
 									}
-								)
+								})
 							}
 						})
 					}
@@ -356,37 +341,40 @@ app.post(
 	}
 )
 
-app.get('/getCharacterModify/:id', async (req, res) => { 
+app.get('/getCharacterModify/:id', async (req, res) => {
 	let sql = 'SELECT * FROM character_modify WHERE id = ?'
-   conn.query(sql, [req.params.id], (err, result) => {
-      if (err) {
-         console.log(err)
-      }
-      res.send(result)
-   })
+	conn.query(sql, [req.params.id], (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
 })
 
-app.post('/updateCharacterModify/:id/:strength/:dexterity/:physique/:intelligence/:wisdom/:charisma',async (req, res) => { 
-	let sql = `UPDATE character_modify SET Strength = ?, Dexterity = ?, Physique = ?, Intelligence = ?, Wisdom = ?, Charisma = ? WHERE id = ?`
-	conn.query(
-		sql,
-		[
-			req.params.strength,
-			req.params.dexterity,
-			req.params.physique,
-			req.params.intelligence,
-			req.params.wisdom,
-			req.params.charisma,
-			req.params.id,
-		],
-		(err, result) => {
-			if (err) {
-				console.log(err)
+app.post(
+	'/updateCharacterModify/:id/:strength/:dexterity/:physique/:intelligence/:wisdom/:charisma',
+	async (req, res) => {
+		let sql = `UPDATE character_modify SET Strength = ?, Dexterity = ?, Physique = ?, Intelligence = ?, Wisdom = ?, Charisma = ? WHERE id = ?`
+		conn.query(
+			sql,
+			[
+				req.params.strength,
+				req.params.dexterity,
+				req.params.physique,
+				req.params.intelligence,
+				req.params.wisdom,
+				req.params.charisma,
+				req.params.id,
+			],
+			(err, result) => {
+				if (err) {
+					console.log(err)
+				}
+				res.send(result)
 			}
-			res.send(result)
-		}
-	)
-})
+		)
+	}
+)
 
 app.get('/getCharacterSkills/:id', async (req, res) => {
 	let sql = 'SELECT * FROM character_skills WHERE id = ?'
@@ -398,35 +386,39 @@ app.get('/getCharacterSkills/:id', async (req, res) => {
 	})
 })
 
-app.post('/updateCharacterSkills/:id/:skills', async (req, res) => { 
+app.post('/updateCharacterSkills/:id/:skills', async (req, res) => {
 	let sql = 'UPDATE character_skills SET skills = ? WHERE id = ?'
-   conn.query(sql, [req.params.skills, req.params.id], (err, result) => {
-      if (err) {
-         console.log(err)
-      }
-      res.send(result)
-   })
+	conn.query(sql, [req.params.skills, req.params.id], (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
 })
 
-app.get('/getCharactersOfName/:string/:user_id', async (req, res) => { 
+app.get('/getCharactersOfName/:string/:user_id', async (req, res) => {
 	let sql = `SELECT * FROM characters WHERE name LIKE '%${req.params.string}%' AND user_id = ? order by id DESC`
-   conn.query(sql, [req.params.user_id],(err, result) => {
-      if (err) {
-         console.log(err)
-      }
-      res.send(result)
-   })
+	conn.query(sql, [req.params.user_id], (err, result) => {
+		if (err) {
+			console.log(err)
+		}
+		res.send(result)
+	})
 })
 
-app.get('/filter/:race/:class/:user_id', async (req, res) => { 
+app.get('/filter/:race/:class/:user_id', async (req, res) => {
 	if (req.params.class !== 'none' && req.params.race !== 'none') {
 		let sql = `SELECT * FROM characters WHERE race = ? AND class = ? AND user_id = ? order by id DESC`
-		conn.query(sql, [req.params.race, req.params.class, req.params.user_id], (err, result) => { 
-			if (err) {
-            console.log(err)
-         }
-         res.send(result)
-		})
+		conn.query(
+			sql,
+			[req.params.race, req.params.class, req.params.user_id],
+			(err, result) => {
+				if (err) {
+					console.log(err)
+				}
+				res.send(result)
+			}
+		)
 	} else if (req.params.race == 'none') {
 		let sql = `SELECT * FROM characters WHERE class = ? AND user_id = ? order by id DESC`
 		conn.query(sql, [req.params.class, req.params.user_id], (err, result) => {

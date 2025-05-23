@@ -81,12 +81,7 @@
 }
 .list__head .main_information .main_information_body .class_race_wrapper select {
   padding-right: 5px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   background-color: transparent;
-}
-.list__head .main_information .main_information_body .class_race_wrapper select::-ms-expand {
-  display: none;
 }
 .list__head .main_information .main_information_body .class_race_wrapper select option {
   background-color: #08192e;
@@ -122,18 +117,21 @@
   font-size: 1.5em;
   color: var(--hpColor);
 }
-.list__head .secondary_information .bonus_wrapper, .list__head .secondary_information .speed_wrapper {
+.list__head .secondary_information .bonus_wrapper,
+.list__head .secondary_information .speed_wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.list__head .secondary_information .bonus_wrapper span, .list__head .secondary_information .speed_wrapper span {
+.list__head .secondary_information .bonus_wrapper span,
+.list__head .secondary_information .speed_wrapper span {
   text-transform: uppercase;
   font-size: 1.5dvh;
   color: #eaeaea;
 }
-.list__head .secondary_information .bonus_wrapper p, .list__head .secondary_information .speed_wrapper p {
+.list__head .secondary_information .bonus_wrapper p,
+.list__head .secondary_information .speed_wrapper p {
   font-size: 2.5dvh;
   font-weight: bold;
   white-space: nowrap;
@@ -357,7 +355,8 @@
   width: 100%;
   cursor: pointer;
 }
-.list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info h1, .list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info .indicator {
+.list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info h1,
+.list_body .main .modify__wrapper .modify .mod_addiction .skill .skill_info .indicator {
   font-size: 2.5dvh;
   font-weight: bold;
 }
