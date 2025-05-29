@@ -18,6 +18,9 @@ import CharacterList from './LocalComponents/CharacterList/Character_list'
 import CharacterError from './LocalComponents/Error/CharacterError'
 import { Home } from './LocalComponents/Home/Home'
 
+import { UserData } from './interfaces'
+import { useUserStore } from './store/userStore'
+import type { userStore } from './store/userStore'
 const device = require('current-device').default
 
 function App() {
@@ -28,7 +31,7 @@ function App() {
 		name: '',
 		password: '',
 	})
-	const [userData, setUserData] = useState({
+	const [userData, setUserData] = useState<UserData>({
 		user_id: 0,
 		theme: 0,
 		vibration: 0,
@@ -56,7 +59,7 @@ function App() {
 
 	const fetchUserAccount = async () => {
 		try {
-			const res = await getUser()
+         const res = await getUser()
 			setUserAccount(res.data[0])
 		} catch (error) {
 			console.error(error)
@@ -86,13 +89,13 @@ function App() {
 			console.error(error)
 		}
 	}
-
 	useEffect(() => {
 		setDevice(device.type)
 		fetchUserAccount()
 		fetchUserData()
 		fetchUserCharacters()
 		fetchUserBook()
+
 	}, [])
 	useEffect(() => {
 		try {
@@ -107,7 +110,7 @@ function App() {
 			i18n.changeLanguage('ru')
 		}
 	}, [userData])
-
+   
 	return (
 		<BrowserRouter>
 			<Header
@@ -126,12 +129,7 @@ function App() {
 						/>
 					}
 				/>
-				<Route
-					path='/'
-					element={
-						<Home />
-					}
-				/>
+				<Route path='/' element={<Home />} />
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				<Route path='forgotPassword' element={<ResetPassword />} />
@@ -140,7 +138,6 @@ function App() {
 					element={
 						<CharacterList
 							userData={userData}
-							vibration={vibration}
 							userCharacters={userCharacters}
 						/>
 					}
