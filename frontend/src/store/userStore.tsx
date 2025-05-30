@@ -2,11 +2,9 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 import { UserData } from '../interfaces'
-import { getUser } from '../functions/user'
-
 
 export interface userStore extends UserData {
-	setUser: () => {}
+	setUser: (data: UserData) => {}
 }
 
 export const useUserStore = create(
@@ -17,14 +15,11 @@ export const useUserStore = create(
       vibration: 0,
       language: 'ru',
       dice_count: 0,
-
-         
+      
       // Mutators
-
-      setUser: async () => {
-         set((await getUser()).data[0])
+      setUser: async (data: UserData) => {
+         set(data)
       },
-
       
    }))
 );

@@ -21,6 +21,7 @@ import { Home } from './LocalComponents/Home/Home'
 import { UserData } from './interfaces'
 import { useUserStore } from './store/userStore'
 import type { userStore } from './store/userStore'
+import axios from './axios.js'
 const device = require('current-device').default
 
 function App() {
@@ -55,11 +56,14 @@ function App() {
 	const [language, setLanguage] = useState('ru')
 	const [vibration, setVibration] = useState(0)
 	const [theme, setTheme] = useState(0)
-	const { t } = useTranslation()
-
+   const { t } = useTranslation()
+   
+   //* User store */
+   const setUser = useUserStore((state: userStore) => state.setUser)
+   
 	const fetchUserAccount = async () => {
 		try {
-         const res = await getUser()
+			const res = await getUser()
 			setUserAccount(res.data[0])
 		} catch (error) {
 			console.error(error)
@@ -68,7 +72,7 @@ function App() {
 	const fetchUserData = async () => {
 		try {
 			const res = await getUserData()
-			setUserData(res.data[0])
+			setUser(res.data[0])
 		} catch (error) {
 			console.error(error)
 		}
@@ -95,7 +99,6 @@ function App() {
 		fetchUserData()
 		fetchUserCharacters()
 		fetchUserBook()
-
 	}, [])
 	useEffect(() => {
 		try {
@@ -110,7 +113,7 @@ function App() {
 			i18n.changeLanguage('ru')
 		}
 	}, [userData])
-   
+
 	return (
 		<BrowserRouter>
 			<Header
